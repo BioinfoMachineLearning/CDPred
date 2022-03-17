@@ -1,0 +1,5 @@
+# file to ignore
+
+# folder to ignore
+**/output/
+env/
