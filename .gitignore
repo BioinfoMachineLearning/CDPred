@@ -2,4 +2,5 @@
 
 # folder to ignore
 **/output/
+**/external_tool/
 env/

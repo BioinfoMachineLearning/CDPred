@@ -128,10 +128,14 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     name = args.name
-    pdb_file_list = args.pdb_file_list
-    a3m_file = args.a3m_file
-    out_path = args.out_path
+    a3m_file = os.path.abspath(args.a3m_file)
+    out_path = os.path.abspath(args.out_path)
     model_option = args.model_option
+
+    pdb_file_list = []
+    for pdb_file in args.pdb_file_list:
+        pdb_file = os.path.abspath(pdb_file)
+        pdb_file_list.append(pdb_file)
 
     chkdirs(out_path)
     GLOABL_Path = os.path.dirname(os.path.split(os.path.realpath(__file__))[0])
@@ -161,6 +165,7 @@ if __name__ == '__main__':
             print("Please make sure the pdb file is monomer!")
         sequence_list.append(sequence[0])
         length = len(sequence[0])
+        length_list.append(length)
         complex_length += length
         #get distance map from pdb file
         intra_dist = get_cb_dist_from_pdbfile(out_file, length)
@@ -178,16 +183,16 @@ if __name__ == '__main__':
     if model_option == 'homodimer':
         open(fasta_file, 'w').write(f'>{name}\n{sequence_list[0]}\n')
     elif model_option == 'heterodimer':
-        open(fasta_file, 'w').write(f'>{name}\n{''.join(sequence_list)}\n')
+        open(fasta_file, 'w').write(f'>{name}\n{"".join(sequence_list)}\n')
     ccmpred_file = f'{feature_path}/{name}.mat'
     if not os.path.exists(ccmpred_file):
-        compute_ccmpred(name, aln_file, save_ccmpred_path=workdir)
+        compute_ccmpred(name, aln_file, save_ccmpred_path=feature_path)
     rowatt_file = f'{feature_path}/{name}.npy'
     if not os.path.exists(rowatt_file):
-        computerowatt_over1024(name, a3m_file, outdir=workdir, depth=128)
+        computerowatt_over1024(name, a3m_file, outdir=feature_path, depth=128)
     pssm_file = f'{feature_path}/{name}_pssm.txt'
     if not os.path.exists(pssm_file):
-        computepssm(name, fasta_file, workdir, unirefdb)
+        computepssm(name, fasta_file, feature_path, unirefdb)
     pred_dist_file = f'{feature_path}/{name}.dist'
     if model_option == 'homodimer':
         np.savetxt(pred_dist_file, intra_dist_list[0], fmt='%.3f')
@@ -198,18 +203,36 @@ if __name__ == '__main__':
         intra_dist[lenA:, lenA:] = intra_dist_list[1]
         np.savetxt(pred_dist_file, intra_dist, fmt='%.3f')
   
-    selected_list_2D = get2d_feature_by_list(name, accept_list, a3m_file, rowatt_file = rowatt_file, ccmpred_file = ccmpred_file, pssm_file = pssm_file, pred_dist_file_cb=pred_dist_file_cb)
+    selected_list_2D = get2d_feature_by_list(name, accept_list, a3m_file, rowatt_file = rowatt_file, ccmpred_file = ccmpred_file, pssm_file = pssm_file, pred_dist_file_cb=pred_dist_file)
     if type(selected_list_2D) == bool:
         print('Fareture shape error.', selected_list_2D.shape)
         sys.exit(1)
     selected_list_2D = selected_list_2D[np.newaxis,:,:,:]
 
-    # for temp in CDPred:
-    #     CDPred_prediction = temp.predict([selected_list_2D], batch_size= 1)
-    #     Y_hat_rdist = CDPred_prediction[0][:,:,:,0:13].sum(axis=-1).squeeze()
-    #     Y_hat_hdist += CDPred_prediction[1][:,:,:,0:13].sum(axis=-1).squeeze()
-    #     if model_option == 'homodimer':
-    #         Y_hat_hdist_inter = Y_hat_hdist
-    #     elif model_option == 'heterodimer':
-    #         value = 
-    #         Y_hat_hdist_inter = Y_hat_hdist_inter[:value,value:]
+    Y_hat_hdist_npy = 0
+    for temp in CDPred:
+        CDPred_prediction = temp.predict([selected_list_2D], batch_size= 1)
+        Y_hat_hdist_npy += CDPred_prediction[1].squeeze()
+    Y_hat_hdist_npy /= len(CDPred)
+    hv_con = Y_hat_hdist_npy[:,:,0:13].sum(axis=-1).squeeze()
+    hv_real_dist = npy2distmap(Y_hat_hdist_npy)
+    if model_option == 'homodimer':
+        hcon_inter = hv_con
+        hdist_inter = hv_real_dist
+    elif model_option == 'heterodimer':
+        value = lenA
+        hcon_inter = hv_con[:value,value:]
+        hdist_inter = hv_real_dist[:value,value:]
+
+    # save the output file
+    print('### save prediction results')
+    predmap_dir = f'{out_path}/predmap/'
+    chkdirs(predmap_dir)
+    hdist_inter_file = f'{predmap_dir}/{name}.dist'
+    np.savetxt(hdist_inter_file, hdist_inter, fmt='%.4f')
+    hcon_inter_file = f'{predmap_dir}/{name}.htxt'
+    np.savetxt(hcon_inter_file, hcon_inter, fmt='%.4f')
+    hdist_rr_file = f'{predmap_dir}/{name}_dist.rr'
+    gen_rr_file(hdist_inter, hdist_rr_file,  option='distance')
+    hcon_rr_file = f'{predmap_dir}/{name}_con.rr'
+    gen_rr_file(hcon_inter, hcon_rr_file,  option='contact')
