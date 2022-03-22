@@ -225,8 +225,8 @@ if __name__ == '__main__':
         hdist_inter = hv_real_dist[:value,value:]
 
     # save the output file
-    print('### save prediction results')
     predmap_dir = f'{out_path}/predmap/'
+    print('### save prediction results %s'%predmap_dir)
     chkdirs(predmap_dir)
     hdist_inter_file = f'{predmap_dir}/{name}.dist'
     np.savetxt(hdist_inter_file, hdist_inter, fmt='%.4f')

@@ -21,8 +21,11 @@ source env/CDPred_virenv/bin/activate
 pip install --upgrade pip
 pip install -r requirments.txt
 ```
+**(3) Download Uniref90**
 
-**(3) Run CDPred (required)**
+Modify the Uniref90 path in script ./lib/constants.py as /Download_Path/uniref90_01_2020/uniref90
+
+**(4) Run CDPred (required)**
 <h4>Case 1: Use CDPred to predict inter-protein homodimeric distance</h4>
 
 ```
