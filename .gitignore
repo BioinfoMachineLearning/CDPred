@@ -2,5 +2,4 @@
 
 # folder to ignore
 **/output/
-external_tool/GDFold/example/
 env/
