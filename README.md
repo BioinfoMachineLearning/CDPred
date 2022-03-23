@@ -22,7 +22,11 @@ pip install --upgrade pip
 pip install -r requirments.txt
 ```
 **(3) Download Uniref90**
-
+Download the Uniref90_01_2020 database for PSSM generation
+```
+wget http://sysbio.rnet.missouri.edu/CDPred_db/uniref90_01_2020.tar.gz
+tar -zxvf uniref90_01_2020.tar.gz
+```
 Modify the Uniref90 path in script ./lib/constants.py as /Download_Path/uniref90_01_2020/uniref90
 
 **(4) Run CDPred (required)**
