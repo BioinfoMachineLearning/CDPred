@@ -1,11 +1,12 @@
 ###########################This is an option file####################################
 
 ###########################Complex alignment generation option#######################
+#bfd database
+bfd_database = /home/multicom4s_tool/alphafold_databases/data/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt
 
 ###########################UNIPROT TO PDB database option############################
 
 # uniref database
-
 uniref90_fasta = /bml/bml_casp15/databases/uniref90/uniref90.fasta
 
 # complex alignments concatenation method

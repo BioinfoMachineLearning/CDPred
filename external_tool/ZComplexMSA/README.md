@@ -11,27 +11,35 @@ pip install -r requirment.txt
 
 **(2) Download the necessary database**
 For homodimer:
-
+Download the Big Fantastic Database(BFD)([here](https://bfd.mmseqs.com/))
 For heterodimer:
+```
+wget http://sysbio.rnet.missouri.edu/CDPred_db/ComplexDB.tar.gz
+tar -zxvf ComplexDB.tar.gz
+```
+Modify the database option file at ./bin/db_option
+```
+bfd_database = /Your_Download_Path/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt
+uniref90_fasta = /Your_Download_Path/uniref90/uniref90.fasta
+uniprot2pdb_dir = /Your_Download_Path/uniprot2pdb
+uniprot2pdb_mapping_file = /Your_Download_Path/uniprot2pdb/uniprot2pdb.map
+dimers_list = /Your_Download_Path/uniprot2pd/dimers_cm.list
+```
 
-
-**(1) run MSA generation for heterodimer**
+**(3) run MSA generation for heterodimer**
 
 ```
-conda activate ./env/
-
-python /home/multicom4s_tool/ZComplexMSA/scripts/alignment_generation.py chainA.fasta chainB.fasta output_folder
+python run_zcomplexmsa.py --option_file [database_option_file] --fasta1 [fasta_file1] --fasta2 [fasta_file2] --outdir [output_folder] --option [dimer_option]
 
 example:
-python /home/multicom4s_tool/ZComplexMSA/scripts/alignment_generation.py /home/multicom4s_tool/ZComplexMSA/test/hetero/1AWCA.fasta  /home/multicom4s_tool/ZComplexMSA/test/hetero/1AWCB.fasta /home/multicom4s_tool/ZComplexMSA/test/1AWCA_1AWCB/
+python run_zcomplexmsa.py --option_file ./bin/db_option --fasta1 ./test/hetero/1AWCA.fasta --fasta2 ./test/hetero/1AWCB.fasta --outdir ./test/hetero --option heterodimer
 ```
 
-**(2) run MSA generation for homodimer**
+**(4) run MSA generation for homodimer**
 
 ```
-sh /home/multicom4s_tool/ZComplexMSA/scripts/hhblits.sh sequence_name fasta_file output_folder database 50
+python run_zcomplexmsa.py --option_file [database_option_file] --fasta1 [fasta_file1] --outdir [output_folder] --option [dimer_option]
 
-example:
-sh /home/multicom4s_tool/ZComplexMSA/scripts/hhblits.sh 2FDOA /home/multicom4s_tool/ZComplexMSA/test/homo/2FDOA.fasta /home/multicom4s_tool/ZComplexMSA/test/2FDOA/ /home/multicom4s_tool/ZComplexMSA/database/bfd/bfd_metaclust_clu_complete_id30_c90_final_seq.sorted_opt 50
+example: 
+python run_zcomplexmsa.py --option_file ./bin/db_option --fasta1 ./test/homo/2FDOA.fasta  --outdir ./test/homo --option homodimer
 ```
-
