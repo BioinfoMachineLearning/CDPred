@@ -49,7 +49,7 @@ if __name__ == '__main__':
 
     if args.option == 'homodimer':
         # test hhblits
-        outdir = f'{os.path.abspath(args.outdir)}/homodimer/'
+        outdir = f'{os.path.abspath(args.outdir)}/'
         makedir_if_not_exists(outdir)
         # for homodimer
         inparams = [os.path.abspath(args.fasta1), outdir, args.hhblits, params['bfd_database']]
@@ -60,7 +60,7 @@ if __name__ == '__main__':
         if args.fasta2 == None:
             print('Heterodimer option need two fasta file input. Please check it')
             sys.exit(1)
-        outdir = f'{os.path.abspath(args.outdir)}/heterodimer/'
+        outdir = f'{os.path.abspath(args.outdir)}/'
         makedir_if_not_exists(outdir)
 
         process_list = []

@@ -2,6 +2,8 @@ import os
 import sys
 import argparse
 from Bio import SeqIO
+import warnings
+from util import *
 
 #'TER', 'END'
 def delete_elements(fhandle, element='TER'):
@@ -143,15 +145,32 @@ def process_pdbfile(in_file, out_file):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='pdb process')
     parser.add_argument('-p', '--pdb_file', help="pdb file", type=str, required=True)
-    parser.add_argument('-o', '--out_file', help="output file", type=str, required=True)
+    parser.add_argument('-o', '--out_folder', help="output folder", type=str, required=True)
+    parser.add_argument('-op', '--option', help="Choose the function want to run", type=str, required=True)
+
 
     args = parser.parse_args()  
-    pdb_file = args.pdb_file
-    out_file = args.out_file
+    pdb_file = os.path.abspath(args.pdb_file)
+    out_folder = os.path.abspath(args.out_folder)
+    option = args.option
     fhandle = open(pdb_file, 'r')
 
-    fhandle = delete_elements(fhandle, 'TER')
-    fhandle = alter_chain(fhandle, 'A')
-    fhandle = renumber_residues(fhandle, 1)
-    fhandle = renumber_atom_serials(fhandle, 1)
-    write_pdb_file(fhandle, out_file)
+    warnings.filterwarnings('ignore')
+    chkdirs(out_folder)
+
+    name = os.path.basename(pdb_file).split('.')[0]
+    if option == 'process_pdbfile':
+        out_file = f'{out_folder}/{name}.pdb'
+        fhandle = delete_elements(fhandle, 'TER')
+        fhandle = alter_chain(fhandle, 'A')
+        fhandle = renumber_residues(fhandle, 1)
+        fhandle = renumber_atom_serials(fhandle, 1)
+        write_pdb_file(fhandle, out_file)
+    elif option == 'get_sequence_from_pdb':
+        out_file = f'{out_folder}/{name}.fasta'
+        sequence_list = get_sequence_from_pdb(pdb_file)
+        if len(sequence_list) >= 2:
+            print('Warning, Please make sure the input pdb file only have one single chain!')
+        sequence = sequence_list[0]
+        open(out_file, 'w').write(f'>{name}\n{sequence}\n')
+    print(f'Save results in {os.path.abspath(out_file)}')

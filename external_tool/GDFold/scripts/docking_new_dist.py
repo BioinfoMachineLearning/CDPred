@@ -15,28 +15,82 @@ if len(sys.argv) != 8:
     print(len(sys.argv))
     exit()
 
-pdb_path = sys.argv[1]
-res_path = sys.argv[2]
-OUT = sys.argv[3]
-weight_file = sys.argv[4]
-num_of_jobs = int(sys.argv[5])
-thre = float(sys.argv[6])
-target_name = sys.argv[7]
-
 from pyrosetta import *
 from rosetta import *
 from rosetta.protocols.rigid import *
 from rosetta.core.scoring import *
 import pyrosetta.rosetta.protocols.rigid as rigid_moves
 from pyrosetta import PyMOLMover
+from utils import *
 
+
+target_name = sys.argv[1]
+first_pdb = os.path.abspath(sys.argv[2])
+second_pdb = os.path.abspath(sys.argv[3])
+res_file = os.path.abspath(sys.argv[4])
+OUT = os.path.abspath(sys.argv[5])
+weight_file = os.path.abspath(sys.argv[6])
+thre = float(sys.argv[7])
+
+
+num_of_jobs = 100
+
+
+if not os.path.exists(OUT):
+    os.mkdir(f'{OUT}/')
+
+os.chdir(OUT)
 init()
-
-working_dir = os.getcwd()
 
 
 chain1 = target_name.split('_')[0][-1]
 chain2 = target_name.split('_')[1][-1]
+    
+target_id = target_name.split('_')[0][:-1]
+    
+chainA_file = f'{OUT}/{target_id}{chain1}.pdb'
+chainB_file = f'{OUT}/{target_id}{chain2}.pdb'
+init_pdb_file = f'{OUT}/{target_id}.pdb'
+
+chainA = add_chain(first_pdb, chain1)
+chainB = add_chain(second_pdb, chain2)
+open(chainA_file, 'w').write(''.join(chainA))
+open(chainB_file, 'w').write(''.join(chainB))
+initial_start = append_pdbs(chainA_file, chainB_file)
+open(init_pdb_file, 'w').write(''.join(initial_start))
+
+pose = pyrosetta.pose_from_pdb(init_pdb_file)
+
+pose = translatePose(pose, [rand_num(1, 60), 0, 0]).clone()
+
+for i in range(40):
+    R_X = get_rotation_matrix('x', rand_num(1, 360))
+    R_Y = get_rotation_matrix('y', rand_num(1, 360))
+    R_Z = get_rotation_matrix('z', rand_num(1, 360))
+        
+    pose = rotatePose(pose, R_X).clone()
+    pose = rotatePose(pose, R_Y).clone()
+    pose = rotatePose(pose, R_Z).clone()
+        
+        
+pose = translatePose(pose, [0, rand_num(1, 60), 0]).clone()
+pose = translatePose(pose, [0, 0, rand_num(1, 60)]).clone()
+
+init_pdb_file = f'{OUT}/{target_id}.pdb'
+pose.dump_pdb(init_pdb_file)
+
+
+
+
+
+
+
+pdb_path = init_pdb_file
+res_path = res_file
+
+
+working_dir = os.getcwd()
+
 
 
 def add_cst(pose, resi, resj, distance):
@@ -149,7 +203,7 @@ def do_dock(pdb_file, res_file, OUT):
     sw = SwitchResidueTypeSetMover("centroid")
 
     dock_jump = 1
-    partners = '{chain1}_{chain2}'
+    partners = f'{chain1}_{chain2}'
 
     slide = rosetta.protocols.docking.DockingSlideIntoContact(dock_jump)
     pert_mover = rigid_moves.RigidBodyPerturbMover(dock_jump, 40, 20)
@@ -169,7 +223,7 @@ def do_dock(pdb_file, res_file, OUT):
 
     dock_hires.set_scorefxn(scorefxn_dock)
     dock_hires.set_scorefxn_pack(scorefxn)
-    dock_hires.set_partners('{chain1}_{chain2}')
+    dock_hires.set_partners(f'{chain1}_{chain2}')
 
     jd = PyJobDistributor(target_name, num_of_jobs, scorefxn)
     temp_pose = Pose()
@@ -197,7 +251,7 @@ def do_dock(pdb_file, res_file, OUT):
 
         sw1.apply(test_pose)
 
-        rosetta.protocols.docking.setup_foldtree(test_pose, '{chain1}_{chain2}', Vector1([1]))
+        rosetta.protocols.docking.setup_foldtree(test_pose, f'{chain1}_{chain2}', Vector1([1]))
 
         dock_hires.apply(test_pose)
 
@@ -252,7 +306,7 @@ def do_dock(pdb_file, res_file, OUT):
     os.system(f'cp {working_dir}/{pdb_name5} {OUT}/top_5_models/model5.pdb')
     
     for ind in range(10):
-      cmd = 'rm -rf ' + working_dir +'/' + '{target_name}_{ind}*.pdb'
+      cmd = 'rm -rf ' + working_dir +'/' + f'{target_name}_{ind}*.pdb'
       os.system(cmd)
     cmd = 'rm -rf ' + working_dir +'/' + '*.fasc'
     os.system(cmd)

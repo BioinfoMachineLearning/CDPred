@@ -19,6 +19,8 @@ from rosetta.protocols.rigid import *
 import pyrosetta.rosetta.protocols.rigid as rigid_moves
 import pyrosetta.rosetta.protocols.rigid as rigid_moves
 
+import string
+
 
 
 def add_chain(pdb_file, letter):
@@ -59,6 +61,29 @@ def append_pdbs(pdb_file1, pdb_file2):
     new_pdb.append(end_line)
     return new_pdb
 
+
+
+def append_multi_pdbs(pdb_files):
+    new_pdb = []
+    
+    
+    for pdb_file in pdb_files:
+     
+        with open(pdb_file, 'r') as f:
+            lines = f.readlines()
+
+            for line in lines:
+                if line.startswith('ATOM'):
+                    new_pdb.append(line)
+        separating_line = 'TER' + '\n'
+        new_pdb.append(separating_line)
+
+    end_line = 'END'
+    new_pdb.append(end_line)
+    return new_pdb
+
+
+
 def get_rotation_matrix(axis_name, degree_magnitude):
     degree_magnitude = math.radians(degree_magnitude)
     if axis_name == 'x':
@@ -96,8 +121,7 @@ def translatePose(pose, t):
 def setResFilebyTopNum(in_res_file, out_res_file, top_num):
     line_list = open(in_res_file, 'r').readlines()
     count = 0
-    
-    with open(out_res_file, 'w') as myfile:
+    with open(out_res_file, 'a') as myfile:
         myfile.write(line_list[0])
         for line in line_list[1:]:
             count += 1
@@ -108,79 +132,4 @@ def setResFilebyTopNum(in_res_file, out_res_file, top_num):
             myfile.write(new_line)
 
 
-if __name__=="__main__":
-    if len(sys.argv) != 8:
-        print('Wrong input parameters\n\n')
-        print(len(sys.argv))
-        exit()
-    target_name = sys.argv[1]
-    first_pdb = sys.argv[2]
-    second_pdb = sys.argv[3]
-    res_file = sys.argv[4]
-    OUT = sys.argv[5]
-    weight_file = sys.argv[6]
-    top_num = sys.argv[7]
 
-    script_path = os.path.split(os.path.realpath(__file__))[0]
-
-    select_top = True
-    if not os.path.exists(OUT):
-        os.mkdir(OUT)
-    os.chdir(OUT)
-    init()
-    
-    thre = 0.01
-    chain1 = target_name.split('_')[0][-1]
-    chain2 = target_name.split('_')[1][-1]
-    
-    target_id = target_name.split('_')[0][:-1]
-    
-    chainA_file = f'{OUT}/{target_id}{chain1}.pdb'
-    chainB_file = f'{OUT}/{target_id}{chain2}.pdb'
-    init_pdb_file = f'{OUT}/{target_id}.pdb'
-
-    chainA = add_chain(first_pdb, chain1)
-    chainB = add_chain(second_pdb, chain2)
-    open(chainA_file, 'w').write(''.join(chainA))
-    open(chainB_file, 'w').write(''.join(chainB))
-    initial_start = append_pdbs(chainA_file, chainB_file)
-    open(init_pdb_file, 'w').write(''.join(initial_start))
-
-    pose = pyrosetta.pose_from_pdb(init_pdb_file)
-
-    pose = translatePose(pose, [rand_num(1, 60), 0, 0]).clone()
-
-    for i in range(40):
-        R_X = get_rotation_matrix('x', rand_num(1, 360))
-        R_Y = get_rotation_matrix('y', rand_num(1, 360))
-        R_Z = get_rotation_matrix('z', rand_num(1, 360))
-        
-        pose = rotatePose(pose, R_X).clone()
-        pose = rotatePose(pose, R_Y).clone()
-        pose = rotatePose(pose, R_Z).clone()
-        
-        
-    pose = translatePose(pose, [0, rand_num(1, 60), 0]).clone()
-    pose = translatePose(pose, [0, 0, rand_num(1, 60)]).clone()
-
-    init_pdb_file = f'{OUT}/{target_id}.pdb'
-    pose.dump_pdb(init_pdb_file)
-    
-    pdb_len = len(pose.sequence())
-    #select top prob of restrain file 
-    if select_top and top_num != 'all':
-        new_res_file = f'{OUT}/{target_id}.rr'
-        if top_num.isdigit():
-            top_num = int(top_num)
-        elif top_num == 'topL10':
-            top_num = int(pdb_len/10)
-            print(f'top number is {top_num}')
-        elif top_num == 'topL5':
-            top_num = int(pdb_len/5)
-        elif top_num == 'topL2':
-            top_num = int(pdb_len/2)
-            
-        setResFilebyTopNum(res_file, new_res_file, top_num)
-        res_file = new_res_file
-    cmd = f'python {script_path}/docking_new.py {init_pdb_file} {res_file} {OUT} {weight_file} 100 {thre} {target_name}'
-    os.system(cmd)

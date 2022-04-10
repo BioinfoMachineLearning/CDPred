@@ -9,19 +9,7 @@ Original file is located at
 
 import os
 import sys
-
-if len(sys.argv) != 7:
-    print('Wrong input parameters\n\n')
-    print(len(sys.argv))
-    exit()
-
-pdb_path = sys.argv[1]
-res_path = sys.argv[2]
-OUT = sys.argv[3]
-weight_file = sys.argv[4]
-target_name = sys.argv[5]
-chains = sys.argv[6]
-
+import string
 
 from pyrosetta import *
 from rosetta import *
@@ -32,7 +20,108 @@ from rosetta.protocols.rigid import *
 import pyrosetta.rosetta.protocols.rigid as rigid_moves
 from pyrosetta.rosetta.protocols.minimization_packing import MinMover
 
+from utils import *
+
 init()
+
+
+
+
+
+
+target_id = sys.argv[1]
+num_of_chains = int(sys.argv[2])
+    
+monomer_pdbs = []
+counter = 3
+    
+for iter in range(num_of_chains):
+    monomer_pdbs.append(sys.argv[counter])
+    counter += 1
+    
+    
+res_file = sys.argv[counter]
+OUT = sys.argv[counter+1]
+weight_file = sys.argv[counter+2]
+    
+top_num = sys.argv[counter+3]
+    
+    
+letters = list(string.ascii_uppercase)
+    
+    
+
+select_top = True
+os.chdir(OUT)
+
+init_pdb_file = f'{OUT}/{target_id}.pdb'
+    
+chain_files = []
+    
+    
+    
+for iter in range(len(monomer_pdbs)):
+    
+    chain_file = f'{OUT}/{target_id}{letters[iter]}.pdb'
+    chain = add_chain(monomer_pdbs[iter], letters[iter])
+        
+        
+    open(chain_file, 'w').write(''.join(chain))
+        
+    chain_files.append(chain_file)
+    
+    
+    
+initial_start = append_multi_pdbs(chain_files)
+open(init_pdb_file, 'w').write(''.join(initial_start))
+    
+
+pose = pyrosetta.pose_from_pdb(init_pdb_file)
+
+pose = translatePose(pose, [rand_num(1, 60), 0, 0]).clone()
+
+for i in range(40):
+    R_X = get_rotation_matrix('x', rand_num(1, 360))
+    R_Y = get_rotation_matrix('y', rand_num(1, 360))
+    R_Z = get_rotation_matrix('z', rand_num(1, 360))
+        
+    pose = rotatePose(pose, R_X).clone()
+    pose = rotatePose(pose, R_Y).clone()
+    pose = rotatePose(pose, R_Z).clone()
+        
+        
+pose = translatePose(pose, [0, rand_num(1, 60), 0]).clone()
+pose = translatePose(pose, [0, 0, rand_num(1, 60)]).clone()
+
+
+pose.dump_pdb(init_pdb_file)
+
+
+pdb_len = len(pose.sequence())
+    
+if select_top and top_num != 'all':
+    new_res_file = f'{OUT}/{target_id}.rr'
+    if top_num.isdigit():
+        top_num = int(top_num)
+    elif top_num == 'topL10':
+        top_num = int(pdb_len/10)
+        print(f'top number is {top_num}')
+    elif top_num == 'topL5':
+        top_num = int(pdb_len/5)
+    elif top_num == 'topL2':
+        top_num = int(pdb_len/2)
+            
+    setResFilebyTopNum(res_file, new_res_file, top_num)
+    res_file = new_res_file
+
+
+
+pdb_path = init_pdb_file
+res_path = res_file
+
+chains = ''.join(letters[:num_of_chains])
+target_name = target_id
+
 
 
 print('Working on docking---')
@@ -106,7 +195,6 @@ def add_cons_to_pose(pose, res_file):
     cons = []
     
     
-    #Dict = {1: 'A', 2: 'B', 3: 'C', 4:'D'}
     Dict = {i+1 : chains[i] for i in range(len(chains))}
 
     for i in range(3, len(lines)):
@@ -119,7 +207,7 @@ def add_cons_to_pose(pose, res_file):
         up = float(data[5])
         probability = float(data[6])
 
-        if probability > 0.5:
+        if probability > 0.000001:
             if add_cst(pose, c1, c2, res_x, res_y, lb, up) is not False:
                 cons.append(add_cst(pose, c1, c2, res_x, res_y, lb, up))
 

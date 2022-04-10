@@ -10,8 +10,10 @@ pip install -r requirment.txt
 ```
 
 **(2) Download the necessary database**
+
 For homodimer:
 Download the Big Fantastic Database(BFD)([here](https://bfd.mmseqs.com/))
+
 For heterodimer:
 ```
 wget http://sysbio.rnet.missouri.edu/CDPred_db/ComplexDB.tar.gz
@@ -31,7 +33,9 @@ dimers_list = /Your_Download_Path/uniprot2pd/dimers_cm.list
 ```
 python run_zcomplexmsa.py --option_file [database_option_file] --fasta1 [fasta_file1] --fasta2 [fasta_file2] --outdir [output_folder] --option [dimer_option]
 
-example:
+```
+Example:
+```
 python run_zcomplexmsa.py --option_file ./bin/db_option --fasta1 ./test/hetero/1AWCA.fasta --fasta2 ./test/hetero/1AWCB.fasta --outdir ./test/hetero --option heterodimer
 ```
 
@@ -39,7 +43,9 @@ python run_zcomplexmsa.py --option_file ./bin/db_option --fasta1 ./test/hetero/1
 
 ```
 python run_zcomplexmsa.py --option_file [database_option_file] --fasta1 [fasta_file1] --outdir [output_folder] --option [dimer_option]
+```
+Example: 
 
-example: 
+```
 python run_zcomplexmsa.py --option_file ./bin/db_option --fasta1 ./test/homo/2FDOA.fasta  --outdir ./test/homo --option homodimer
 ```

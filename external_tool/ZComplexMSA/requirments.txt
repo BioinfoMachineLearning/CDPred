@@ -2,3 +2,4 @@ tqdm==4.63.1
 absl-py==1.0.0
 numpy==1.22.3
 pandas==1.4.1
+biopython==1.79

@@ -125,10 +125,10 @@ if __name__ == '__main__':
     parser.add_argument('-m', '--model_option', help="model option, i.e: homodimer, heterodimer", type=str, required=False, default='homodimer')
     parser.add_argument('-o', '--out_path', help="output folder", type=str, required=True)
 
-
+    os.environ['CUDA_VISIBLE_DEVICES']="-1"
     args = parser.parse_args()
     name = args.name
-    a3m_file = os.path.abspath(args.a3m_file)
+    in_a3m_file = os.path.abspath(args.a3m_file)
     out_path = os.path.abspath(args.out_path)
     model_option = args.model_option
 
@@ -174,9 +174,9 @@ if __name__ == '__main__':
     print('### Generate features')
     feature_path = f'{out_path}/feature/'
     chkdirs(feature_path)
-    os.system(f'cp {a3m_file} {feature_path}')
     a3m_file = f'{feature_path}/{name}.a3m'
     aln_file = f'{feature_path}/{name}.aln'
+    os.system(f'cp {in_a3m_file} {a3m_file}')
     os.system("grep -v '^>' %s | sed 's/[a-z]//g' >  %s" % (a3m_file, aln_file))
 
     fasta_file = f'{feature_path}/{name}.fasta'
