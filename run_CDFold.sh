@@ -74,16 +74,20 @@ then
                 conda activate $workdir/external_tool/ZComplexMSA/env/
                 if [[ "$model_option" =~ 'homo' ]]
                 then
-                        python lib/pdb_process.py -p ${pdb_file_arr[0]} -o $output_dir/MSA/ -op get_sequence_from_pdb
-                        python $workdir/external_tool/ZComplexMSA/run_zcomplexmsa.py --option_file $workdir/external_tool/ZComplexMSA/bin/db_option --fasta1 $output_dir/MSA/${pdb_name_list[0]}.fasta --outdir $output_dir/MSA/ --option homodimer
+                        if [[ ! -f $output_dir/MSA/${pdb_name_list[0]}.a3m ]]
+                        then
+                                python lib/pdb_process.py -p ${pdb_file_arr[0]} -o $output_dir/MSA/ -op get_sequence_from_pdb
+                                python $workdir/external_tool/ZComplexMSA/run_zcomplexmsa.py --option_file $workdir/external_tool/ZComplexMSA/bin/db_option --fasta1 $output_dir/MSA/${pdb_name_list[0]}.fasta --outdir $output_dir/MSA/ --option homodimer
+                        fi 
                 else
                         for pdb_file in ${pdb_file_arr[@]}
                         do
                                 python lib/pdb_process.py -p $pdb_file -o $output_dir/MSA/ -op get_sequence_from_pdb
                         done
-
-                        python $workdir/external_tool/ZComplexMSA/run_zcomplexmsa.py --option_file $workdir/external_tool/ZComplexMSA/bin/db_option --fasta1 $output_dir/MSA/${pdb_name_list[0]}.fasta --fasta2 $output_dir/MSA/${pdb_name_list[1]}.fasta --outdir $output_dir/MSA/ --option heterodimer
-
+                        if [[ ! -f $output_dir/MSA/$name.a3m ]]
+                        then
+                                python $workdir/external_tool/ZComplexMSA/run_zcomplexmsa.py --option_file $workdir/external_tool/ZComplexMSA/bin/db_option --fasta1 $output_dir/MSA/${pdb_name_list[0]}.fasta --fasta2 $output_dir/MSA/${pdb_name_list[1]}.fasta --outdir $output_dir/MSA/ --option heterodimer
+                        fi 
                 fi
                 conda deactivate
         fi
@@ -102,17 +106,20 @@ fi
 
 # Run CDPred
 echo "### Runing CDPred"
-if [[ "$a3m_file" == "" ]] 
-then
-        if [[ "$model_option" =~ 'homo' ]] 
+if [[ ! -f $output_dir/predmap/"$name"_dist.rr ]]
+then 
+        if [[ "$a3m_file" == "" ]] 
         then
-                python lib/Model_predict.py -n $name -p $pdb_file_list -a $output_dir/MSA/${pdb_name_list[0]}.a3m -m $model_option -o $output_dir
+                if [[ "$model_option" =~ 'homo' ]] 
+                then
+                        python lib/Model_predict.py -n $name -p $pdb_file_list -a $output_dir/MSA/${pdb_name_list[0]}.a3m -m $model_option -o $output_dir
+                else
+                        tmp_name="${pdb_name_list[0]}"_"${pdb_name_list[1]}"
+                        python lib/Model_predict.py -n $name -p $pdb_file_list -a $output_dir/MSA/$tmp_name.a3m -m $model_option -o $output_dir
+                fi
         else
-                tmp_name="${pdb_name_list[0]}"_"${pdb_name_list[1]}"
-                python lib/Model_predict.py -n $name -p $pdb_file_list -a $output_dir/MSA/$tmp_name.a3m -m $model_option -o $output_dir
+                python lib/Model_predict.py -n $name -p $pdb_file_list -a $a3m_file -m $model_option -o $output_dir
         fi
-else
-        python lib/Model_predict.py -n $name -p $pdb_file_list -a $a3m_file -m $model_option -o $output_dir
 fi
 echo "The prediction map at: $output_dir/predmap/"
 

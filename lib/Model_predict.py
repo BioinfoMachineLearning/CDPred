@@ -18,6 +18,7 @@ import keras.backend as K
 import tensorflow as tf
 import numpy as np
 import argparse
+import warnings
 from util import *
 from pdb_process import process_pdbfile, get_sequence_from_pdb
 
@@ -126,6 +127,7 @@ if __name__ == '__main__':
     parser.add_argument('-o', '--out_path', help="output folder", type=str, required=True)
 
     os.environ['CUDA_VISIBLE_DEVICES']="-1"
+    warnings.filterwarnings('ignore')
     args = parser.parse_args()
     name = args.name
     in_a3m_file = os.path.abspath(args.a3m_file)
@@ -172,7 +174,7 @@ if __name__ == '__main__':
         intra_dist_list.append(intra_dist)
 
     print('### Generate features')
-    feature_path = f'{out_path}/feature/'
+    feature_path = f'{out_path}/feature/{name}'
     chkdirs(feature_path)
     a3m_file = f'{feature_path}/{name}.a3m'
     aln_file = f'{feature_path}/{name}.aln'

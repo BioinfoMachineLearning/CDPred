@@ -27,7 +27,7 @@ python ./scripts/docking_gd_parallel_multi.py target_name num_of_chains first_ch
 
 example:
 
-python ./scripts/docking_gd_parallel_multi.py T1034 4 /home/esdft/Downloads/pdbs/initial_start_multi/T1034A.pdb /home/esdft/Downloads/pdbs/initial_start_multi/T1034B.pdb /home/esdft/Downloads/pdbs/initial_start_multi/T1034C.pdb /home/esdft/Downloads/pdbs/initial_start_multi/T1034D.pdb /home/esdft/Downloads/output_distance/T1034o.rr /home/esdft/Downloads/pdbs/ ./talaris2013.wts all
+python ./scripts/docking_gd_parallel_multi.py T1034 4 /home/bml_casp15/CDPred/output/multimer/T1034A.pdb /home/bml_casp15/CDPred/output/multimer/T1034B.pdb /home/bml_casp15/CDPred/output/multimer/T1034C.pdb /home/bml_casp15/CDPred/output/multimer/T1034D.pdb /home/bml_casp15/CDPred/output/multimer/T1034o.rr /home/bml_casp15/CDPred/output/test8/ ./scripts/talaris2013.wts all
 
 
 
@@ -38,5 +38,7 @@ python ./scripts/docking_gd_parallel_multi_dist.py target_name num_of_chains fir
 
 
 example:
+
+python ./scripts/docking_gd_parallel_multi_dist.py T1034 4 /home/esdft/Downloads/pdbs/initial_start_multi/T1034A.pdb /home/esdft/Downloads/pdbs/initial_start_multi/T1034B.pdb /home/esdft/Downloads/pdbs/initial_start_multi/T1034C.pdb /home/esdft/Downloads/pdbs/initial_start_multi/T1034D.pdb /home/esdft/Downloads/output_distance/T1034o.rr /home/esdft/Downloads/pdbs/ ./talaris2013.wts 36
 
 python ./scripts/docking_gd_parallel_multi_dist.py T1034 4 /home/esdft/Downloads/pdbs/initial_start_multi/T1034A.pdb /home/esdft/Downloads/pdbs/initial_start_multi/T1034B.pdb /home/esdft/Downloads/pdbs/initial_start_multi/T1034C.pdb /home/esdft/Downloads/pdbs/initial_start_multi/T1034D.pdb /home/esdft/Downloads/output_distance/T1034o.rr /home/esdft/Downloads/pdbs/ ./talaris2013.wts 36

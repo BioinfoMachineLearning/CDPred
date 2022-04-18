@@ -35,9 +35,9 @@ for iter in range(num_of_chains):
     counter += 1
     
     
-res_file = sys.argv[counter]
-OUT = sys.argv[counter+1]
-weight_file = sys.argv[counter+2]
+res_file = os.path.abspath(sys.argv[counter])
+OUT = os.path.abspath(sys.argv[counter+1])
+weight_file = os.path.abspath(sys.argv[counter+2])
     
 thre = float(sys.argv[counter+3])
     
@@ -47,6 +47,8 @@ letters = list(string.ascii_uppercase)
     
 
 select_top = True
+if not os.path.exists(OUT):
+    os.mkdir(f'{OUT}/')
 os.chdir(OUT)
 
 init_pdb_file = f'{OUT}/{target_id}.pdb'

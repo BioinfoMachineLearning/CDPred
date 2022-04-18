@@ -28,7 +28,6 @@ init()
 
 
 
-
 target_id = sys.argv[1]
 num_of_chains = int(sys.argv[2])
     
@@ -40,9 +39,9 @@ for iter in range(num_of_chains):
     counter += 1
     
     
-res_file = sys.argv[counter]
-OUT = sys.argv[counter+1]
-weight_file = sys.argv[counter+2]
+res_file = os.path.abspath(sys.argv[counter])
+OUT = os.path.abspath(sys.argv[counter+1])
+weight_file = os.path.abspath(sys.argv[counter+2])
     
 top_num = sys.argv[counter+3]
     
@@ -52,6 +51,8 @@ letters = list(string.ascii_uppercase)
     
 
 select_top = True
+if not os.path.exists(OUT):
+    os.mkdir(f'{OUT}/')
 os.chdir(OUT)
 
 init_pdb_file = f'{OUT}/{target_id}.pdb'
@@ -196,24 +197,27 @@ def add_cons_to_pose(pose, res_file):
     
     
     Dict = {i+1 : chains[i] for i in range(len(chains))}
+    
 
-    for i in range(3, len(lines)):
+    for i in range(1, len(lines)):
         data = lines[i].split()
         c1 = Dict[int(data[0])]
         c2 = Dict[int(data[1])]
         res_x = int(data[2])
         res_y = int(data[3])
-        lb = float(data[4])
-        up = float(data[5])
-        probability = float(data[6])
+        #lb = float(data[4])
+        #up = float(data[5])
+        lb = 0
+        up = 6
+        probability = float(data[-1])
 
         if probability > 0.000001:
             if add_cst(pose, c1, c2, res_x, res_y, lb, up) is not False:
                 cons.append(add_cst(pose, c1, c2, res_x, res_y, lb, up))
 
-        else:
-            if add_cst(pose, res_x, res_y, up, protein_diameter) is not False:
-                cons.append(add_cst(pose, res_x, res_y, up, protein_diameter))
+        # else:
+        #     if add_cst(pose, res_x, res_y, up, protein_diameter) is not False:
+        #         cons.append(add_cst(pose, res_x, res_y, up, protein_diameter))
 
     cl = pyrosetta.rosetta.utility.vector1_std_shared_ptr_const_core_scoring_constraints_Constraint_t()
     cl.extend(cons)
@@ -281,7 +285,7 @@ def do_dock(pdb_file, res_file, OUT, weight_file, partners):
     min_mover1 = MinMover(movemap, scorefxn, 'lbfgs', 0.0001, True)
     min_mover1.max_iter(3000)
 
-    jd = PyJobDistributor(target_name, 100, scorefxn)
+    jd = PyJobDistributor(target_name, 50, scorefxn)
     temp_pose = Pose()
     temp_pose.assign(pose)
     jd.native_pose = temp_pose
@@ -405,7 +409,7 @@ for epoch in range(100):
    
   rmsd = CA_rmsd(pyrosetta.pose_from_pdb(curr_pdb), pyrosetta.pose_from_pdb(prev_pdb))
   
-  if rmsd <= 0.1:
+  if rmsd <= 1:
     break
 
 

@@ -23,6 +23,7 @@ if __name__ == '__main__':
     chkdirs(out_folder)
     for pdb_file in pdb_file_list:
         pdb_file = os.path.abspath(pdb_file)
+        os.system(f'cp {pdb_file} {out_folder}')
         name = os.path.basename(pdb_file).split('.')[0]
         out_file = f'{out_folder}/{name}.fasta'
         sequence_list = get_sequence_from_pdb(pdb_file)
@@ -33,10 +34,40 @@ if __name__ == '__main__':
 
     uni_chain = stocihiometry.split('/')
     chain_number = 0
+    homomeric_list = []
+    heteromeric_list = []
+    new_pdb_list = []
+    new_pdb_file_list = []
     for chain in uni_chain:
+        chain_id = chain.split(':')[0]
+        ori_pdb_file = f'{out_folder}/{chain_id}.pdb'
+        if not os.path.exists(ori_pdb_file):
+            print("Plase make sure the stocihiometry share the same pdb id with pdb file list")
+            sys.exit(1)
         if ':' in chain:
             homo_num = int(chain.split(':')[-1])
         else:
             homo_num = 1
+        if homo_num >=1:
+            homomeric_list.append(chain_id)
+        heteromeric_list.append(chain_id)
+        for i in range(homo_num):
+            new_chain_id = f'{chain_id}{i}'
+            new_pdb_list.append(new_chain_id)
+            os.system(f'cp {ori_pdb_file} {out_folder}/{new_chain_id}.pdb')
+            new_pdb_file_list.append(f'{out_folder}/{new_chain_id}.pdb')
         chain_number += 1*homo_num
     
+    # all hetero pairs
+    heteromeric_pairs = []
+    if len(heteromeric_list) >= 2:
+        for i in range(len(heteromeric_list)):
+            for j in range(i+1, len(heteromeric_list)):
+                heteromeric_pairs.append(f'{heteromeric_list[i]}_{heteromeric_list[j]}')
+    # all inter pairs
+    all_inter_paris = []
+    for i in range(len(new_pdb_list)):
+        for j in range(i+1, len(new_pdb_list)):
+            all_inter_paris.append(f'{new_pdb_list[i]}_{new_pdb_list[j]}')
+
+    print(f"{'|'.join(homomeric_list)} {'|'.join(heteromeric_pairs)} {'|'.join(all_inter_paris)}  {'|'.join(new_pdb_file_list)}")

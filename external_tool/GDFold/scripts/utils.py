@@ -120,16 +120,16 @@ def translatePose(pose, t):
         
 def setResFilebyTopNum(in_res_file, out_res_file, top_num):
     line_list = open(in_res_file, 'r').readlines()
+    
     count = 0
     with open(out_res_file, 'a') as myfile:
         myfile.write(line_list[0])
         for line in line_list[1:]:
             count += 1
             if count >= top_num:
-                new_line = ' '.join(line.strip('\n').split(' ')[:4]+list('0'))+'\n'
+                new_line = ' '.join(line.strip('\n').split(' ')[:-1]+list('0'))+'\n'
             else:
-                new_line = ' '.join(line.strip('\n').split(' ')[:4]+list('1'))+'\n'
+                new_line = ' '.join(line.strip('\n').split(' ')[:-1]+list('1'))+'\n'
             myfile.write(new_line)
-
 
 

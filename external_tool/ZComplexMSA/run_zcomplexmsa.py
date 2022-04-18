@@ -40,7 +40,7 @@ if __name__ == '__main__':
     parser.add_argument('--fasta2', help="fasta file, only need if is heterodimer", type=is_file, required=False, default=None)
     parser.add_argument('--hhblits', type=is_file, required=False, default=f'{GLOABL_PATH}/env/bin/hhblits')
     parser.add_argument('--jackhmmer', type=is_file, required=False, default=f'{GLOABL_PATH}/env/bin/jackhmmer')
-    parser.add_argument('--outdir', type=is_dir, required=True)
+    parser.add_argument('--outdir', type=str, required=True)
     parser.add_argument('--option', help="option to select the type: i.e. homodimer, heterodimer", type=str, required=True)
 
     args = parser.parse_args()
