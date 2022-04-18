@@ -4,7 +4,7 @@ Deep transformer for predicting interchain residue-residue distances of protein 
 **(1) Download CDPred package (a short path for the package is recommended)**
 
 ```
-git clone git@github.com:BioinfoMachineLearning/CDPred.git
+git clone https://github.com/BioinfoMachineLearning/CDPred.git
 
 cd CDPred
 ```

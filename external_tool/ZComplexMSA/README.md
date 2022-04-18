@@ -6,7 +6,7 @@
 conda create -p ./env/ -c conda-forge -c bioconda hhsuite python==3.8
 conda activate ./env/
 conda install -y -c bioconda hmmer==3.3.2 hhsuite==3.3.0
-pip install -r requirment.txt
+pip install -r requirments.txt
 ```
 
 **(2) Download the necessary database**

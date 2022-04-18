@@ -48,7 +48,18 @@ fi
 workdir=$(dirname $(readlink -f "$0"))
 cd $workdir
 
-paras=`python ./lib/multimer_preprocess.py  -p $pdb_file_list -s $stocihiometry -o $output_dir/PrePro/`
+# Activate virtual environment
+virenv_dir=$workdir/env/CDPred_virenv/
+if [[ ! -x "$virenv_dir" ]]
+then
+        echo "$virenv_dir not exit, please create the virtual environment follow README!"
+        exit 1
+else
+        echo "### Activet the virtual environment"
+        source $virenv_dir/bin/activate
+fi
+
+paras=`python3 ./lib/multimer_preprocess.py  -p $pdb_file_list -s $stocihiometry -o $output_dir/PrePro/`
 paras_list=(`echo $paras | tr ' ' ' '`)
 homomeric_list=${paras_list[0]}
 heteromeric_pairs=${paras_list[1]}
@@ -64,7 +75,7 @@ then
         echo 'Complex MSA geneation tool not exist!'
         exit 1
 else
-        mkdir "$output_dir"/MSA/
+        mkdir $(readlink -f "$output_dir"/MSA/)
         __conda_setup="$('conda' 'shell.bash' 'hook' 2> /dev/null)"
         eval "$__conda_setup"
         unset __conda_setup
@@ -104,19 +115,9 @@ else
         conda deactivate
 fi
 
-# Activate virtual environment
-virenv_dir=$workdir/env/CDPred_virenv/
-if [[ ! -x "$virenv_dir" ]]
-then
-        echo "$virenv_dir not exit, please create the virtual environment follow README!"
-        exit 1
-else
-        echo "### Activet the virtual environment"
-        source $virenv_dir/bin/activate
-fi
-
 # Run CDPred
 echo "### Runing CDPred"
+source $virenv_dir/bin/activate
 tmp_list=(`echo $homomeric_list | tr '|' ' '`)
 for tmp_id in ${tmp_list[@]}
 do
