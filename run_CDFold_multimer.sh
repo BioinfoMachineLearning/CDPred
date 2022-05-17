@@ -60,6 +60,7 @@ else
 fi
 
 paras=`python3 ./lib/multimer_preprocess.py  -p $pdb_file_list -s $stocihiometry -o $output_dir/PrePro/`
+
 paras_list=(`echo $paras | tr ' ' ' '`)
 homomeric_list=${paras_list[0]}
 heteromeric_pairs=${paras_list[1]}
@@ -80,37 +81,43 @@ else
         eval "$__conda_setup"
         unset __conda_setup
         conda activate $workdir/external_tool/ZComplexMSA/env/
-        tmp_list=(`echo $homomeric_list | tr '|' ' '`)
-        for tmp_id in ${tmp_list[@]}
-        do
-        {
-                if [[ ! -f $output_dir/MSA/$tmp_id.a3m ]]
-                then
-                        python $workdir/external_tool/ZComplexMSA/run_zcomplexmsa.py \
-                        --option_file $workdir/external_tool/ZComplexMSA/bin/db_option \
-                        --fasta1 $output_dir/PrePro/$tmp_id.fasta \
-                        --outdir $output_dir/MSA/ \
-                        --option homodimer
-                fi
+        if [[ "$homomeric_list" != "#" ]]
+        then
+                tmp_list=(`echo $homomeric_list | tr '|' ' '`)
+                for tmp_id in ${tmp_list[@]}
+                do
+                {
+                        if [[ ! -f $output_dir/MSA/$tmp_id.a3m ]]
+                        then
+                                python $workdir/external_tool/ZComplexMSA/run_zcomplexmsa.py \
+                                --option_file $workdir/external_tool/ZComplexMSA/bin/db_option \
+                                --fasta1 $output_dir/PrePro/$tmp_id.fasta \
+                                --outdir $output_dir/MSA/ \
+                                --option homodimer
+                        fi
 
-        }&
-        done
-        tmp_list=(`echo $heteromeric_pairs | tr '|' ' '`)
-        for tmp_pair in ${tmp_list[@]}
-        do
-        {       
-                if [[ ! -f $output_dir/MSA/$tmp_pair.a3m ]]
-                then 
-                        tmp_id=(`echo $tmp_pair | tr '_' ' '`)
-                        python $workdir/external_tool/ZComplexMSA/run_zcomplexmsa.py \
-                        --option_file $workdir/external_tool/ZComplexMSA/bin/db_option \
-                        --fasta1 $output_dir/PrePro/${tmp_id[0]}.fasta \
-                        --fasta2 $output_dir/PrePro/${tmp_id[1]}.fasta \
-                        --outdir $output_dir/MSA/ \
-                        --option heterodimer
-                fi
-        }&
-        done
+                }&
+                done
+        fi
+        if [[ "$heteromeric_pairs" != "#" ]]
+                then
+                tmp_list=(`echo $heteromeric_pairs | tr '|' ' '`)
+                for tmp_pair in ${tmp_list[@]}
+                do
+                {       
+                        if [[ ! -f $output_dir/MSA/$tmp_pair.a3m ]]
+                        then 
+                                tmp_id=(`echo $tmp_pair | tr '_' ' '`)
+                                python $workdir/external_tool/ZComplexMSA/run_zcomplexmsa.py \
+                                --option_file $workdir/external_tool/ZComplexMSA/bin/db_option \
+                                --fasta1 $output_dir/PrePro/${tmp_id[0]}.fasta \
+                                --fasta2 $output_dir/PrePro/${tmp_id[1]}.fasta \
+                                --outdir $output_dir/MSA/ \
+                                --option heterodimer
+                        fi
+                }&
+                done
+        fi
         wait
         conda deactivate
 fi
@@ -118,31 +125,37 @@ fi
 # Run CDPred
 echo "### Runing CDPred"
 source $virenv_dir/bin/activate
-tmp_list=(`echo $homomeric_list | tr '|' ' '`)
-for tmp_id in ${tmp_list[@]}
-do
-{
-        if [[ ! -f $output_dir/predmap/"$tmp_id"_dist.rr ]]
-        then 
-                tmp_pdb_file_list="$output_dir/PrePro/$tmp_id.pdb"
-                echo $tmp_pdb_file_list
-                python ./lib/Model_predict.py -n $tmp_id -p $tmp_pdb_file_list -a $output_dir/MSA/$tmp_id.a3m -m homodimer -o $output_dir/
-        fi
-}&
-done
-tmp_list=(`echo $heteromeric_pairs | tr '|' ' '`)
-for tmp_pair in ${tmp_list[@]}
-do
-{ 
-        if [[ ! -f $output_dir/predmap/"$tmp_pair"_dist.rr ]]
-        then 
-                tmp_id=(`echo $tmp_pair | tr '_' ' '`)  
-                tmp_pdb_file_list="$output_dir/PrePro/${tmp_id[0]}.pdb $output_dir/PrePro/${tmp_id[1]}.pdb"   
-                echo $tmp_pdb_file_list  
-                python ./lib/Model_predict.py -n $tmp_pair -p $tmp_pdb_file_list -a $output_dir/MSA/$tmp_pair.a3m -m heterodimer -o $output_dir/
-        fi
-}&
-done
+if [[ "$homomeric_list" != "#" ]]
+then
+        tmp_list=(`echo $homomeric_list | tr '|' ' '`)
+        for tmp_id in ${tmp_list[@]}
+        do
+        {
+                if [[ ! -f $output_dir/predmap/"$tmp_id"_dist.rr ]]
+                then 
+                        tmp_pdb_file_list="$output_dir/PrePro/$tmp_id.pdb"
+                        echo $tmp_pdb_file_list
+                        python ./lib/Model_predict.py -n $tmp_id -p $tmp_pdb_file_list -a $output_dir/MSA/$tmp_id.a3m -m homodimer -o $output_dir/
+                fi
+        }&
+        done
+fi
+if [[ "$heteromeric_pairs" != "#" ]]
+then
+        tmp_list=(`echo $heteromeric_pairs | tr '|' ' '`)
+        for tmp_pair in ${tmp_list[@]}
+        do
+        { 
+                if [[ ! -f $output_dir/predmap/"$tmp_pair"_dist.rr ]]
+                then 
+                        tmp_id=(`echo $tmp_pair | tr '_' ' '`)  
+                        tmp_pdb_file_list="$output_dir/PrePro/${tmp_id[0]}.pdb $output_dir/PrePro/${tmp_id[1]}.pdb"   
+                        echo $tmp_pdb_file_list  
+                        python ./lib/Model_predict.py -n $tmp_pair -p $tmp_pdb_file_list -a $output_dir/MSA/$tmp_pair.a3m -m heterodimer -o $output_dir/
+                fi
+        }&
+        done
+fi
 wait
 python ./lib/generate_multimer_rr.py -n $name -r $output_dir/predmap/ -i $all_inter_paris -d $dist_thred -o $output_dir/predmap
 

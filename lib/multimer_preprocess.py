@@ -21,16 +21,6 @@ if __name__ == '__main__':
 
     warnings.filterwarnings('ignore')
     chkdirs(out_folder)
-    for pdb_file in pdb_file_list:
-        pdb_file = os.path.abspath(pdb_file)
-        os.system(f'cp {pdb_file} {out_folder}')
-        name = os.path.basename(pdb_file).split('.')[0]
-        out_file = f'{out_folder}/{name}.fasta'
-        sequence_list = get_sequence_from_pdb(pdb_file)
-        if len(sequence_list) >= 2:
-            print('Warning, Please make sure the input pdb file only have one single chain!')
-        sequence = sequence_list[0]
-        open(out_file, 'w').write(f'>{name}\n{sequence}\n')
 
     uni_chain = stocihiometry.split('/')
     chain_number = 0
@@ -58,6 +48,17 @@ if __name__ == '__main__':
             new_pdb_file_list.append(f'{out_folder}/{new_chain_id}.pdb')
         chain_number += 1*homo_num
     
+    for pdb_file in new_pdb_file_list:
+        pdb_file = os.path.abspath(pdb_file)
+        os.system(f'cp {pdb_file} {out_folder}')
+        name = os.path.basename(pdb_file).split('.')[0]
+        out_file = f'{out_folder}/{name}.fasta'
+        sequence_list = get_sequence_from_pdb(pdb_file)
+        if len(sequence_list) >= 2:
+            print('Warning, Please make sure the input pdb file only have one single chain!')
+        sequence = sequence_list[0]
+        open(out_file, 'w').write(f'>{name}\n{sequence}\n')
+        
     # all hetero pairs
     heteromeric_pairs = []
     if len(heteromeric_list) >= 2:
@@ -70,4 +71,8 @@ if __name__ == '__main__':
         for j in range(i+1, len(new_pdb_list)):
             all_inter_paris.append(f'{new_pdb_list[i]}_{new_pdb_list[j]}')
 
+    if len(homomeric_list) == 0:
+        homomeric_list = '#'
+    if len(heteromeric_pairs) == 0:
+        heteromeric_pairs = '#'
     print(f"{'|'.join(homomeric_list)} {'|'.join(heteromeric_pairs)} {'|'.join(all_inter_paris)}  {'|'.join(new_pdb_file_list)}")

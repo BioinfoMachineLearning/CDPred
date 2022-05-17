@@ -255,7 +255,7 @@ def do_dock(pdb_file, res_file, OUT, weight_file, partners):
     min_mover1 = MinMover(movemap, scorefxn, 'lbfgs', 0.0001, True)
     min_mover1.max_iter(3000)
 
-    jd = PyJobDistributor(target_name, 100, scorefxn)
+    jd = PyJobDistributor(target_name, 50, scorefxn)
     temp_pose = Pose()
     temp_pose.assign(pose)
     jd.native_pose = temp_pose
@@ -325,6 +325,9 @@ def do_dock(pdb_file, res_file, OUT, weight_file, partners):
             print(file_name, score)
 
     print(generated_output[score_results.index(min(score_results))])
+    
+    if not os.path.exists(f'{OUT}/top_5_models'):
+        os.system(f'mkdir {OUT}/top_5_models')
 
     pdb_name = generated_output[score_results.index(min(score_results))][2:-1]
 
@@ -335,6 +338,20 @@ def do_dock(pdb_file, res_file, OUT, weight_file, partners):
     cmd = "cp " + best_pdb + " " + OUT + "/" + target_name + "_GD.pdb"
     os.system(cmd)
     print(cmd)
+    
+    
+    top5_ind = sorted(range(len(score_results)), key = lambda sub: score_results[sub])[:5]
+    
+    pdb_name1 = generated_output[top5_ind[0]][2:-1]
+    pdb_name2 = generated_output[top5_ind[1]][2:-1]
+    pdb_name3 = generated_output[top5_ind[2]][2:-1]
+    pdb_name4 = generated_output[top5_ind[3]][2:-1]
+    pdb_name5 = generated_output[top5_ind[4]][2:-1]
+    os.system(f'cp {working_dir}/{pdb_name1} {OUT}/top_5_models/model1.pdb')
+    os.system(f'cp {working_dir}/{pdb_name2} {OUT}/top_5_models/model2.pdb')
+    os.system(f'cp {working_dir}/{pdb_name3} {OUT}/top_5_models/model3.pdb')
+    os.system(f'cp {working_dir}/{pdb_name4} {OUT}/top_5_models/model4.pdb')
+    os.system(f'cp {working_dir}/{pdb_name5} {OUT}/top_5_models/model5.pdb')
     
     for ind in range(10):
       cmd = f'rm -rf {working_dir}/{target_name}_{ind}*.pdb'
