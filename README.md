@@ -1,7 +1,7 @@
-## CDPred
+# CDPred
 Deep transformer for predicting interchain residue-residue distances of protein complexes
 
-# Installation
+## Installation
 **(1) Download CDPred package (a short path for the package is recommended)**
 
 ```
@@ -33,7 +33,7 @@ Modify the Uniref90 path in script ./lib/constants.py as /Download_Path/uniref90
 The installation and configuration of the virtual environment lasts about 10 minutes (minor difference on different devices).
 And the the Uniref90 database download will take about 40 minutes to 70 minutes, dependent on your network speed.
 
-# Run CDPred and Example 
+## Run CDPred and Example 
 Case 1: Use CDPred to predict inter-protein homodimeric distance
 
 ```
@@ -56,7 +56,7 @@ Example (Lasts about 5 minutes):
 python lib/Model_predict.py -n H1017A_H1017B -p ./example/H1017A.pdb ./example/H1017B.pdb -a ./example/H1017A_H1017B.a3m -m heterodimer -o ./output/H1017A_H1017B/
 ```
 
-# Output files
-For both homodimer and heterodimer cases, the final prediction results will be stored in folder ./output/ProteinID/predmap/
+## Output files
+For both homodimer and heterodimer cases, the final prediction results will be stored in folder ./output/ProteinID/predmap/.
 The inter-protein prediction distance map end in ProteinID.dist, the inter-protein prediction contact map end in ProteinID.htxt.
 
