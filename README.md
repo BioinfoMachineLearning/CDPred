@@ -12,6 +12,7 @@ cd CDPred
 **(2) Install and activate Python 3.6.x environment on Linux (required)**
 
 The installation of Python 3.6.x may be different for different Linux systems. 
+The installation and configuration of the virtual environment lasts about 10 minutes (minor difference on different devices)
 
 **Note**: The system is developed and tested under Python 3.6.x. 
 ```
@@ -35,7 +36,7 @@ Modify the Uniref90 path in script ./lib/constants.py as /Download_Path/uniref90
 ```
 python lib/Model_predict.py -n ProteinID -p pdb_file_list -a MSA_file(end in .a3m) -m homodimer -o output_path 
 ```
-Example
+Example (Lasts about 5 minutes):
 
 ```
 python lib/Model_predict.py -n T1084A_T1084B -p ./example/T1084A_T1084B.pdb -a ./example/T1084A_T1084B.a3m -m homodimer -o ./output/T1084A_T1084B/
@@ -46,7 +47,7 @@ python lib/Model_predict.py -n T1084A_T1084B -p ./example/T1084A_T1084B.pdb -a .
 ```
 python lib/Model_predict.py -n ProteinID -p pdb_file_list -a MSA_file(end in .a3m) -m homodimer -o output_path 
 ```
-Example
+Example (Lasts about 5 minutes):
 
 ```
 python lib/Model_predict.py -n H1017A_H1017B -p ./example/H1017A.pdb ./example/H1017B.pdb -a ./example/H1017A_H1017B.a3m -m heterodimer -o ./output/H1017A_H1017B/

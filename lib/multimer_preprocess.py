@@ -22,6 +22,17 @@ if __name__ == '__main__':
     warnings.filterwarnings('ignore')
     chkdirs(out_folder)
 
+    for pdb_file in pdb_file_list:
+        pdb_file = os.path.abspath(pdb_file)
+        os.system(f'cp {pdb_file} {out_folder}')
+        name = os.path.basename(pdb_file).split('.')[0]
+        out_file = f'{out_folder}/{name}.fasta'
+        sequence_list = get_sequence_from_pdb(pdb_file)
+        if len(sequence_list) >= 2:
+            print('Warning, Please make sure the input pdb file only have one single chain!')
+        sequence = sequence_list[0]
+        open(out_file, 'w').write(f'>{name}\n{sequence}\n')
+        
     uni_chain = stocihiometry.split('/')
     chain_number = 0
     homomeric_list = []
