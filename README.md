@@ -10,8 +10,9 @@ CDPred is a deep transformer tool for predicting interchain residue-residue dist
 - [Running CDPred](#running-cdpred)
 - [Demo](#demo)
 - [Output files](#output-files)
-- [Evaluation](#evaluation)
+- [Evaluation on a Small Dataset](#evaluation-on-a-small-dataset)
 - [License](#license)
+- [Reference](#reference)
 
 ## System Requirements
 ### OS Requirements
