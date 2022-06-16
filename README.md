@@ -62,7 +62,7 @@ And the the Uniref90 database download will take about 40 minutes to 70 minutes,
 ## Running CDPred
 ### Parameter Description of the CDPred prediction script.
 
-**Command**: 
+**Command**:  
 	`python CDPred_Installation_Path/lib/Model_predict.py -n [name] -p [pdb_file_list] -a [a3m_file] -m [model_option] -o [out_path]`  
 **Parameters**:  
 	`-n` – The name of the protein complex, can be protein ID or custom name.  
@@ -129,13 +129,13 @@ The contents of each output file are as follows:
 *   `name.dist` – Prediction inter-chain distance map.
 
 ## Evaluation on a Small Dataset
-**Command**: 
+**Command**:  
 	`python CDPred_Installation_Path/lib/distmap_evaluate.py -p [pred_map] -t [true_map] -f1 [fasta_file1] -f2 [fasta_file2]`
-**Parameters**:
-	`-p` – The prediction contact map with '.htxt' suffix.
-	`-t` – The nativate distance/contact map with '.htxt' suffix.
-	`-f1` – The fasta sequence file of chain 1 of dimer.
-	`-f2` – The fasta sequence file of chain 2 of dimer.
+**Parameters**:  
+	`-p` – The prediction contact map with '.htxt' suffix.   
+	`-t` – The nativate distance/contact map with '.htxt' suffix.  
+	`-f1` – The fasta sequence file of chain 1 of dimer.  
+	`-f2` – The fasta sequence file of chain 2 of dimer.  
 
 Demo1: Evaluate the homodimer target.
 
