@@ -64,14 +64,9 @@ And the the Uniref90 database download will take about 40 minutes to 70 minutes,
 Command: `CDPred_Installation_Path/lib/Model_predict.py -n [name] -p [pdb_file_list] -a [a3m_file] -m [model_option] -o [out_path]`  
 Parameters:  
 	`-n` – The name of the protein complex, can be protein ID or custom name.  
-	`-p` – The predicted monomer tertiary structure file or files with ".pdb" suffix. For homodimer inter-chain distance prediction, one 
-		predicted monomer structure file is enough. For heterodimer inter-chain distance prediction, both chains' predicted  
-		monomer structure files are required and needed to seperate by one space (Check the detail in [Demo](#demo) section).  
-	`-a` – Multiple sequence alignment (MSA) file in ".a3m" format. You can use your own or any third-party tool to generate MSA file, or you can follow the 
-		instruction in [ZComplexMSA](https://github.com/BioinfoMachineLearning/CDPred/tree/main/external_tool/ZComplexMSA) to 
-		install our custom MSA generation tool (Require large disk space and long time for dataset downloading).  
-	`-m` – Model option for different type prediction. Use "homodimer" for homodimer inter-chain distance prediction. 
-		Use "heterodimer" for heterodimer inter-chain distance prediction.  
+	`-p` – The predicted monomer tertiary structure file or files with ".pdb" suffix. For homodimer inter-chain distance prediction, one predicted monomer structure file is enough. For heterodimer inter-chain distance prediction, both chains' predicted monomer structure files are required and needed to seperate by one space (Check the detail in [Demo](#demo) section).  
+	`-a` – Multiple sequence alignment (MSA) file in ".a3m" format. You can use your own or any third-party tool to generate MSA file, or you can follow the instruction in [ZComplexMSA](https://github.com/BioinfoMachineLearning/CDPred/tree/main/external_tool/ZComplexMSA) to install our custom MSA generation tool (Require large disk space and long time for dataset downloading).  
+	`-m` – Model option for different type prediction. Use "homodimer" for homodimer inter-chain distance prediction. Use "heterodimer" for heterodimer inter-chain distance prediction.  
 	`-o` – The custom output folder. It will be automaticly created if not exist.  
 
 ## Demo
