@@ -72,10 +72,10 @@ Parameters:
 		install our custom MSA generation tool (Require large disk space and long time for dataset downloading).
 	`-m` – Model option for different type prediction. Use "homodimer" for homodimer inter-chain distance prediction. 
 		Use "heterodimer" for heterodimer inter-chain distance prediction
-	`-o` – The custom output folder. It will automaticly created if not exist.
+	`-o` – The custom output folder. It will be automaticly created if not exist.
 
 ## Demo
-### Instructions to run on example data
+### Examples to make predictions on prepared input data
 
 Demo1: Run CDPred on a homodimer target.
 
@@ -131,7 +131,7 @@ The contents of each output file are as follows:
 *   `name.htxt` – Prediction inter-chain contact map.
 *   `name.dist` – Prediction inter-chain distance map.
 
-## Evaluation
+## Evaluation on a Small Dataset
 Script File: `.lib/distmap_evaluate.py -p [pred_map] -t [true_map] -f1 [fasta_file1] -f2 [fasta_file2]`
 Parameters:
 	`-p` – The prediction contact map with '.htxt' suffix.
