@@ -81,4 +81,5 @@ python lib/Model_predict.py -n ProteinID -p pdb_file_list -a MSA_file(end in .a3
 ## Output files
 For both homodimer and heterodimer cases, the final prediction results will be stored in folder ./output/ProteinID/predmap/.
 The inter-protein prediction distance map end in ProteinID.dist, the inter-protein prediction contact map end in ProteinID.htxt.
+The expection output for the example located at ./example/expection_output/.
 
