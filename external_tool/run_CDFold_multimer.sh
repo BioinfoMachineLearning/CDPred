@@ -45,7 +45,7 @@ then
     dist_thred=12
 fi
 
-workdir=$(dirname $(readlink -f "$0"))
+workdir=$(dirname $(dirname $(readlink -f "$0")))
 cd $workdir
 
 # Activate virtual environment
@@ -59,7 +59,7 @@ else
         source $virenv_dir/bin/activate
 fi
 
-paras=`python3 ./lib/multimer_preprocess.py  -p $pdb_file_list -s $stocihiometry -o $output_dir/PrePro/`
+paras=`python3 $workdir/lib/multimer_preprocess.py  -p $pdb_file_list -s $stocihiometry -o $output_dir/PrePro/`
 
 paras_list=(`echo $paras | tr ' ' ' '`)
 homomeric_list=${paras_list[0]}
@@ -135,7 +135,7 @@ then
                 then 
                         tmp_pdb_file_list="$output_dir/PrePro/$tmp_id.pdb"
                         echo $tmp_pdb_file_list
-                        python ./lib/Model_predict.py -n $tmp_id -p $tmp_pdb_file_list -a $output_dir/MSA/$tmp_id.a3m -m homodimer -o $output_dir/
+                        python $workdir/lib/Model_predict.py -n $tmp_id -p $tmp_pdb_file_list -a $output_dir/MSA/$tmp_id.a3m -m homodimer -o $output_dir/
                 fi
         }&
         done
@@ -151,13 +151,13 @@ then
                         tmp_id=(`echo $tmp_pair | tr '_' ' '`)  
                         tmp_pdb_file_list="$output_dir/PrePro/${tmp_id[0]}.pdb $output_dir/PrePro/${tmp_id[1]}.pdb"   
                         echo $tmp_pdb_file_list  
-                        python ./lib/Model_predict.py -n $tmp_pair -p $tmp_pdb_file_list -a $output_dir/MSA/$tmp_pair.a3m -m heterodimer -o $output_dir/
+                        python $workdir/lib/Model_predict.py -n $tmp_pair -p $tmp_pdb_file_list -a $output_dir/MSA/$tmp_pair.a3m -m heterodimer -o $output_dir/
                 fi
         }&
         done
 fi
 wait
-python ./lib/generate_multimer_rr.py -n $name -r $output_dir/predmap/ -i $all_inter_paris -d $dist_thred -o $output_dir/predmap
+python $workdir/lib/generate_multimer_rr.py -n $name -r $output_dir/predmap/ -i $all_inter_paris -d $dist_thred -o $output_dir/predmap
 
 # Check GDFold existence
 echo "### Runing GDFold"
@@ -186,6 +186,6 @@ echo "Chain number:"${#pdb_file_arr[@]}
 weight_file=$workdir/external_tool/GDFold/scripts/talaris2013.wts
 fold_outdir=$output_dir/models/
 
-python external_tool/GDFold/scripts/docking_gd_parallel_multi_dist.py $name ${#pdb_file_arr[@]} $pdb_file_list $rr_file $fold_outdir $weight_file $dist_thred
+python $workdir/external_tool/GDFold/scripts/docking_gd_parallel_multi_dist.py $name ${#pdb_file_arr[@]} $pdb_file_list $rr_file $fold_outdir $weight_file $dist_thred
 echo "Final model at: $output_dir/models/"$name"_GD.pdb"
 

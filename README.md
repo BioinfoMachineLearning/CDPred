@@ -61,7 +61,7 @@ And the the Uniref90 database download will take about 40 minutes to 70 minutes,
 ## Running CDPred
 ### Parameter Description of the CDPred prediction script.
 
-Command: `CDPred_Installation_Path/lib/Model_predict.py -n [name] -p [pdb_file_list] -a [a3m_file] -m [model_option] -o [out_path]`
+Command: `CDPred_Installation_Path/lib/Model_predict.py -n [name] -p [pdb_file_list] -a [a3m_file] -m [model_option] -o [out_path]`  
 Parameters:
 	`-n` – The name of the protein complex, can be protein ID or custom name.
 	`-p` – The predicted monomer tertiary structure file or files with ".pdb" suffix. For homodimer inter-chain distance prediction, one 
@@ -164,5 +164,4 @@ H1017A_H1017B   110   125   60.0000    60.0000    54.5455    50.0000    41.8182 
 This project is covered under the **MIT License**.
 
 ## Reference
-
 Z. Guo, J. Liu, J. Skolnick, J. Cheng. Prediction of inter-chain distance maps of protein complexes with 2D attention-based deep neural networks. Submited.

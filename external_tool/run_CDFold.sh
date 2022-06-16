@@ -50,7 +50,7 @@ then
     dist_thred=12
 fi
 
-workdir=$(dirname $(readlink -f "$0"))
+workdir=$(dirname $(dirname $(readlink -f "$0")))
 cd $workdir
 
 pdb_file_arr=(`echo $pdb_file_list | tr ' ' ' '`)
@@ -112,13 +112,13 @@ then
         then
                 if [[ "$model_option" =~ 'homo' ]] 
                 then
-                        python lib/Model_predict.py -n $name -p $pdb_file_list -a $output_dir/MSA/${pdb_name_list[0]}.a3m -m $model_option -o $output_dir
+                        python $workdir/lib/Model_predict.py -n $name -p $pdb_file_list -a $output_dir/MSA/${pdb_name_list[0]}.a3m -m $model_option -o $output_dir
                 else
                         tmp_name="${pdb_name_list[0]}"_"${pdb_name_list[1]}"
-                        python lib/Model_predict.py -n $name -p $pdb_file_list -a $output_dir/MSA/$tmp_name.a3m -m $model_option -o $output_dir
+                        python $workdir/lib/Model_predict.py -n $name -p $pdb_file_list -a $output_dir/MSA/$tmp_name.a3m -m $model_option -o $output_dir
                 fi
         else
-                python lib/Model_predict.py -n $name -p $pdb_file_list -a $a3m_file -m $model_option -o $output_dir
+                python $workdir/lib/Model_predict.py -n $name -p $pdb_file_list -a $a3m_file -m $model_option -o $output_dir
         fi
 fi
 echo "The prediction map at: $output_dir/predmap/"
@@ -147,5 +147,5 @@ fi
 weight_file=$workdir/external_tool/GDFold/scripts/talaris2013.wts
 fold_outdir=$output_dir/models/
 
-python ./external_tool/GDFold/scripts/docking_new_dist.py $name $pdb_file_list $rr_file $fold_outdir $weight_file $dist_thred
+python $workdir/external_tool/GDFold/scripts/docking_new_dist.py $name $pdb_file_list $rr_file $fold_outdir $weight_file $dist_thred
 echo "Final model at: $output_dir/models/top_5_models/"
