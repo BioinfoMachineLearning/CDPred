@@ -162,3 +162,7 @@ H1017A_H1017B   110   125   60.0000    60.0000    54.5455    50.0000    41.8182 
 
 ## License
 This project is covered under the **MIT License**.
+
+## Reference
+
+Z. Guo, J. Liu, J. Skolnick, J. Cheng. Prediction of inter-chain distance maps of protein complexes with 2D attention-based deep neural networks. Submited.
