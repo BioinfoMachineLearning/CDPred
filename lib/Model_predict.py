@@ -160,7 +160,7 @@ if __name__ == '__main__':
     for pdb_file in pdb_file_list:
         pdb_name = os.path.basename(pdb_file).split('.')[0]
         pdb_name_list.append(pdb_name)
-        out_file = f'{out_path}/{pdb_name}.pdb'
+        out_file = f'{out_path}/{pdb_name}.pdb' 
         process_pdbfile(pdb_file, out_file)
         sequence = get_sequence_from_pdb(pdb_file)
         if len(sequence) > 1:
@@ -174,7 +174,7 @@ if __name__ == '__main__':
         intra_dist_list.append(intra_dist)
 
     print('### Generate features')
-    feature_path = f'{out_path}/feature/{name}'
+    feature_path = f'{out_path}/feature/'
     chkdirs(feature_path)
     a3m_file = f'{feature_path}/{name}.a3m'
     aln_file = f'{feature_path}/{name}.aln'

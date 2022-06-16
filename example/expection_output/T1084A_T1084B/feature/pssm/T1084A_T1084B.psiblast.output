@@ -1,0 +1,775 @@
+BLASTP 2.2.26 [Sep-21-2011]
+
+
+Reference: Altschul, Stephen F., Thomas L. Madden, Alejandro A. Schaffer, 
+Jinghui Zhang, Zheng Zhang, Webb Miller, and David J. Lipman (1997), 
+"Gapped BLAST and PSI-BLAST: a new generation of protein database search
+programs",  Nucleic Acids Res. 25:3389-3402.
+
+
+Reference for compositional score matrix adjustment: Altschul, Stephen F., 
+John C. Wootton, E. Michael Gertz, Richa Agarwala, Aleksandr Morgulis,
+Alejandro A. Schaffer, and Yi-Kuo Yu (2005) "Protein database searches
+using compositionally adjusted substitution matrices", FEBS J. 272:5101-5109.
+
+
+Reference for composition-based statistics starting in round 2:
+Schaffer, Alejandro A., L. Aravind, Thomas L. Madden,
+Sergei Shavirin, John L. Spouge, Yuri I. Wolf,  
+Eugene V. Koonin, and Stephen F. Altschul (2001), 
+"Improving the accuracy of PSI-BLAST protein database searches with 
+composition-based statistics and other refinements",  Nucleic Acids Res. 29:2994-3005.
+
+Query= T1084A_T1084B
+         (71 letters)
+
+Database: uniref90 
+           105,959,287 sequences; 35,318,875,500 total letters
+
+Searching..................................................done
+
+
+Results from round 1
+
+
+                                                                 Score    E
+Sequences producing significant alignments:                      (bits) Value
+
+UniRef90_D7BIZ4 Uncharacterized protein n=1 Tax=Meiothermus silv...   112   1e-22
+UniRef90_UPI000B85BC96 hypothetical protein n=1 Tax=Beijerinckia...    53   2e-04
+UniRef90_UPI0011BDFA18 hypothetical protein n=1 Tax=Adhaeribacte...    52   3e-04
+UniRef90_A0A402A866 Uncharacterized protein n=1 Tax=Tengunoibact...    50   9e-04
+
+>UniRef90_D7BIZ4 Uncharacterized protein n=1 Tax=Meiothermus silvanus (strain ATCC
+          700542 / DSM 9946 / VI-R2) TaxID=526227
+          RepID=D7BIZ4_MEISD
+          Length = 73
+
+ Score =  112 bits (281), Expect = 1e-22,   Method: Compositional matrix adjust.
+ Identities = 71/71 (100%), Positives = 71/71 (100%)
+
+Query: 1  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 60
+          AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK
+Sbjct: 3  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 62
+
+Query: 61 HDAEHHAPKPH 71
+          HDAEHHAPKPH
+Sbjct: 63 HDAEHHAPKPH 73
+
+
+>UniRef90_UPI000B85BC96 hypothetical protein n=1 Tax=Beijerinckia sp. 28-YEA-48
+          TaxID=1882748 RepID=UPI000B85BC96
+          Length = 68
+
+ Score = 52.8 bits (125), Expect = 2e-04,   Method: Compositional matrix adjust.
+ Identities = 40/62 (64%), Positives = 46/62 (74%)
+
+Query: 6  EHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKHDAEH 65
+          EHH KAAEHHE AAKHH  AA+HHE GEHE+AAHH+  A+ H  HA EH   A+K  AEH
+Sbjct: 7  EHHTKAAEHHELAAKHHREAAKHHESGEHEKAAHHSKIAHGHSLHATEHHEHASKKHAEH 66
+
+Query: 66 HA 67
+          H+
+Sbjct: 67 HS 68
+
+
+>UniRef90_UPI0011BDFA18 hypothetical protein n=1 Tax=Adhaeribacter aerolatus TaxID=670289
+          RepID=UPI0011BDFA18
+          Length = 87
+
+ Score = 51.6 bits (122), Expect = 3e-04,   Method: Compositional matrix adjust.
+ Identities = 36/59 (61%), Positives = 42/59 (71%)
+
+Query: 3  KGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKH 61
+          K AEHH  AA+H EQAAK+H AAAEH   G+H++AAHH  TAY    HA+ HA QAA H
+Sbjct: 10 KSAEHHQIAADHLEQAAKNHRAAAEHLAAGDHQKAAHHGYTAYGLSSHAQYHAQQAALH 68
+
+
+>UniRef90_A0A402A866 Uncharacterized protein n=1 Tax=Tengunoibacter tsumagoiensis
+          TaxID=2014871 RepID=A0A402A866_9CHLR
+          Length = 74
+
+ Score = 50.1 bits (118), Expect = 9e-04,   Method: Compositional matrix adjust.
+ Identities = 37/59 (62%), Positives = 41/59 (69%)
+
+Query: 2  HKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 60
+          H   EHH KAAEHH +AA+HH  AAEHH KGEHE AA HA  A+ HH  A EH  +AAK
+Sbjct: 5  HPSIEHHRKAAEHHRKAAEHHEKAAEHHAKGEHETAASHAHMAHGHHIQATEHLEEAAK 63
+
+
+Searching..................................................done
+
+
+Results from round 2
+
+
+                                                                 Score    E
+Sequences producing significant alignments:                      (bits) Value
+Sequences used in model and found again:
+
+UniRef90_D7BIZ4 Uncharacterized protein n=1 Tax=Meiothermus silv...    76   1e-11
+UniRef90_UPI000B85BC96 hypothetical protein n=1 Tax=Beijerinckia...    64   6e-08
+UniRef90_A0A402A866 Uncharacterized protein n=1 Tax=Tengunoibact...    61   6e-07
+UniRef90_UPI0011BDFA18 hypothetical protein n=1 Tax=Adhaeribacte...    59   2e-06
+
+Sequences not found previously or not previously below threshold:
+
+UniRef90_UPI000A0039BF hypothetical protein n=1 Tax=Bradyrhizobi...    53   2e-04
+UniRef90_A0A225DK00 Uncharacterized protein n=1 Tax=Fimbriiglobu...    52   2e-04
+
+>UniRef90_D7BIZ4 Uncharacterized protein n=1 Tax=Meiothermus silvanus (strain ATCC
+          700542 / DSM 9946 / VI-R2) TaxID=526227
+          RepID=D7BIZ4_MEISD
+          Length = 73
+
+ Score = 76.0 bits (185), Expect = 1e-11,   Method: Composition-based stats.
+ Identities = 71/71 (100%), Positives = 71/71 (100%)
+
+Query: 1  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 60
+          AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK
+Sbjct: 3  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 62
+
+Query: 61 HDAEHHAPKPH 71
+          HDAEHHAPKPH
+Sbjct: 63 HDAEHHAPKPH 73
+
+
+>UniRef90_UPI000B85BC96 hypothetical protein n=1 Tax=Beijerinckia sp. 28-YEA-48
+          TaxID=1882748 RepID=UPI000B85BC96
+          Length = 68
+
+ Score = 64.1 bits (154), Expect = 6e-08,   Method: Composition-based stats.
+ Identities = 40/62 (64%), Positives = 46/62 (74%)
+
+Query: 6  EHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKHDAEH 65
+          EHH KAAEHHE AAKHH  AA+HHE GEHE+AAHH+  A+ H  HA EH   A+K  AEH
+Sbjct: 7  EHHTKAAEHHELAAKHHREAAKHHESGEHEKAAHHSKIAHGHSLHATEHHEHASKKHAEH 66
+
+Query: 66 HA 67
+          H+
+Sbjct: 67 HS 68
+
+
+>UniRef90_A0A402A866 Uncharacterized protein n=1 Tax=Tengunoibacter tsumagoiensis
+          TaxID=2014871 RepID=A0A402A866_9CHLR
+          Length = 74
+
+ Score = 60.6 bits (145), Expect = 6e-07,   Method: Composition-based stats.
+ Identities = 38/67 (56%), Positives = 42/67 (62%)
+
+Query: 1  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 60
+           H   EHH KAAEHH +AA+HH  AAEHH KGEHE AA HA  A+ HH  A EH  +AAK
+Sbjct: 4  GHPSIEHHRKAAEHHRKAAEHHEKAAEHHAKGEHETAASHAHMAHGHHIQATEHLEEAAK 63
+
+Query: 61 HDAEHHA 67
+                A
+Sbjct: 64 KHTAQPA 70
+
+
+>UniRef90_UPI0011BDFA18 hypothetical protein n=1 Tax=Adhaeribacter aerolatus TaxID=670289
+          RepID=UPI0011BDFA18
+          Length = 87
+
+ Score = 58.7 bits (140), Expect = 2e-06,   Method: Composition-based stats.
+ Identities = 37/64 (57%), Positives = 44/64 (68%)
+
+Query: 3  KGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKHD 62
+          K AEHH  AA+H EQAAK+H AAAEH   G+H++AAHH  TAY    HA+ HA QAA H 
+Sbjct: 10 KSAEHHQIAADHLEQAAKNHRAAAEHLAAGDHQKAAHHGYTAYGLSSHAQYHAQQAALHH 69
+
+Query: 63 AEHH 66
+          +  H
+Sbjct: 70 SHEH 73
+
+
+>UniRef90_UPI000A0039BF hypothetical protein n=1 Tax=Bradyrhizobium sp. NAS80.1
+          TaxID=1680159 RepID=UPI000A0039BF
+          Length = 70
+
+ Score = 52.5 bits (124), Expect = 2e-04,   Method: Composition-based stats.
+ Identities = 38/69 (55%), Positives = 46/69 (66%)
+
+Query: 1  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 60
+          + K AEHH +AAEHH QAA+HH  AA+H+E G+HE+AAHHA TA  H  HA  H  +A K
+Sbjct: 2  SKKAAEHHKQAAEHHTQAARHHGEAAKHYEGGQHEKAAHHAHTASGHGHHANYHTEEAGK 61
+
+Query: 61 HDAEHHAPK 69
+             E H  K
+Sbjct: 62 AHMEEHGKK 70
+
+
+>UniRef90_A0A225DK00 Uncharacterized protein n=1 Tax=Fimbriiglobus ruber TaxID=1908690
+          RepID=A0A225DK00_9BACT
+          Length = 70
+
+ Score = 52.2 bits (123), Expect = 2e-04,   Method: Composition-based stats.
+ Identities = 39/69 (56%), Positives = 45/69 (65%)
+
+Query: 1  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 60
+          + K AE H KAAE H++A +HH  AA+HHE G HE+AAHHA TA  H  HAE H   AA 
+Sbjct: 2  SKKAAESHKKAAESHKKAGEHHEQAAKHHEAGNHEKAAHHAHTAKGHQTHAERHTNDAAA 61
+
+Query: 61 HDAEHHAPK 69
+          H AE H  K
+Sbjct: 62 HHAEEHGAK 70
+
+
+Searching..................................................done
+
+
+Results from round 3
+
+
+                                                                 Score    E
+Sequences producing significant alignments:                      (bits) Value
+Sequences used in model and found again:
+
+UniRef90_D7BIZ4 Uncharacterized protein n=1 Tax=Meiothermus silv...    78   5e-12
+UniRef90_UPI000A0039BF hypothetical protein n=1 Tax=Bradyrhizobi...    72   2e-10
+UniRef90_A0A225DK00 Uncharacterized protein n=1 Tax=Fimbriiglobu...    70   8e-10
+UniRef90_UPI000B85BC96 hypothetical protein n=1 Tax=Beijerinckia...    68   5e-09
+UniRef90_A0A402A866 Uncharacterized protein n=1 Tax=Tengunoibact...    67   6e-09
+UniRef90_UPI0011BDFA18 hypothetical protein n=1 Tax=Adhaeribacte...    64   5e-08
+
+Sequences not found previously or not previously below threshold:
+
+UniRef90_A0A5C1ACH7 Uncharacterized protein n=1 Tax=Gemmataceae ...    56   1e-05
+UniRef90_A0A2H5FQX6 Uncharacterized protein n=1 Tax=Legionella s...    56   2e-05
+UniRef90_A0A4Q5LGK5 Uncharacterized protein n=3 Tax=Hymenobacter...    55   4e-05
+UniRef90_A0A4Z0EGL9 Uncharacterized protein n=1 Tax=Hymenobacter...    55   4e-05
+UniRef90_I0IMJ9 Uncharacterized protein n=1 Tax=Leptospirillum f...    53   9e-05
+UniRef90_UPI000369B78A hypothetical protein n=1 Tax=Hymenobacter...    53   1e-04
+UniRef90_A0A370X2Q2 Uncharacterized protein n=1 Tax=Dyella sp. 4...    53   1e-04
+UniRef90_UPI0010F9C116 hypothetical protein n=1 Tax=Rudaea sp. 3...    53   1e-04
+UniRef90_A0A317IC02 Uncharacterized protein n=1 Tax=Candidatus M...    53   1e-04
+UniRef90_A0A1N6RL65 Uncharacterized protein n=1 Tax=Mucilaginiba...    53   2e-04
+UniRef90_UPI000943D660 hypothetical protein n=1 Tax=Rufibacter r...    51   6e-04
+UniRef90_A0A431QXA7 Uncharacterized protein n=2 Tax=Bradyrhizobi...    50   8e-04
+UniRef90_G3IVL7 Uncharacterized protein n=2 Tax=Methylobacter tu...    50   8e-04
+UniRef90_A0A411HQF9 Uncharacterized protein n=1 Tax=Xanthomonada...    50   0.001
+
+>UniRef90_D7BIZ4 Uncharacterized protein n=1 Tax=Meiothermus silvanus (strain ATCC
+          700542 / DSM 9946 / VI-R2) TaxID=526227
+          RepID=D7BIZ4_MEISD
+          Length = 73
+
+ Score = 77.7 bits (189), Expect = 5e-12,   Method: Composition-based stats.
+ Identities = 71/71 (100%), Positives = 71/71 (100%)
+
+Query: 1  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 60
+          AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK
+Sbjct: 3  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 62
+
+Query: 61 HDAEHHAPKPH 71
+          HDAEHHAPKPH
+Sbjct: 63 HDAEHHAPKPH 73
+
+
+>UniRef90_UPI000A0039BF hypothetical protein n=1 Tax=Bradyrhizobium sp. NAS80.1
+          TaxID=1680159 RepID=UPI000A0039BF
+          Length = 70
+
+ Score = 72.3 bits (175), Expect = 2e-10,   Method: Composition-based stats.
+ Identities = 38/69 (55%), Positives = 46/69 (66%)
+
+Query: 1  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 60
+          + K AEHH +AAEHH QAA+HH  AA+H+E G+HE+AAHHA TA  H  HA  H  +A K
+Sbjct: 2  SKKAAEHHKQAAEHHTQAARHHGEAAKHYEGGQHEKAAHHAHTASGHGHHANYHTEEAGK 61
+
+Query: 61 HDAEHHAPK 69
+             E H  K
+Sbjct: 62 AHMEEHGKK 70
+
+
+>UniRef90_A0A225DK00 Uncharacterized protein n=1 Tax=Fimbriiglobus ruber TaxID=1908690
+          RepID=A0A225DK00_9BACT
+          Length = 70
+
+ Score = 70.0 bits (169), Expect = 8e-10,   Method: Composition-based stats.
+ Identities = 39/69 (56%), Positives = 45/69 (65%)
+
+Query: 1  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 60
+          + K AE H KAAE H++A +HH  AA+HHE G HE+AAHHA TA  H  HAE H   AA 
+Sbjct: 2  SKKAAESHKKAAESHKKAGEHHEQAAKHHEAGNHEKAAHHAHTAKGHQTHAERHTNDAAA 61
+
+Query: 61 HDAEHHAPK 69
+          H AE H  K
+Sbjct: 62 HHAEEHGAK 70
+
+
+>UniRef90_UPI000B85BC96 hypothetical protein n=1 Tax=Beijerinckia sp. 28-YEA-48
+          TaxID=1882748 RepID=UPI000B85BC96
+          Length = 68
+
+ Score = 67.6 bits (163), Expect = 5e-09,   Method: Composition-based stats.
+ Identities = 40/67 (59%), Positives = 47/67 (70%)
+
+Query: 1  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 60
+          +    EHH KAAEHHE AAKHH  AA+HHE GEHE+AAHH+  A+ H  HA EH   A+K
+Sbjct: 2  SKDTHEHHTKAAEHHELAAKHHREAAKHHESGEHEKAAHHSKIAHGHSLHATEHHEHASK 61
+
+Query: 61 HDAEHHA 67
+            AEHH+
+Sbjct: 62 KHAEHHS 68
+
+
+>UniRef90_A0A402A866 Uncharacterized protein n=1 Tax=Tengunoibacter tsumagoiensis
+          TaxID=2014871 RepID=A0A402A866_9CHLR
+          Length = 74
+
+ Score = 67.3 bits (162), Expect = 6e-09,   Method: Composition-based stats.
+ Identities = 38/67 (56%), Positives = 42/67 (62%)
+
+Query: 1  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 60
+           H   EHH KAAEHH +AA+HH  AAEHH KGEHE AA HA  A+ HH  A EH  +AAK
+Sbjct: 4  GHPSIEHHRKAAEHHRKAAEHHEKAAEHHAKGEHETAASHAHMAHGHHIQATEHLEEAAK 63
+
+Query: 61 HDAEHHA 67
+                A
+Sbjct: 64 KHTAQPA 70
+
+
+>UniRef90_UPI0011BDFA18 hypothetical protein n=1 Tax=Adhaeribacter aerolatus TaxID=670289
+          RepID=UPI0011BDFA18
+          Length = 87
+
+ Score = 64.2 bits (154), Expect = 5e-08,   Method: Composition-based stats.
+ Identities = 37/65 (56%), Positives = 44/65 (67%)
+
+Query: 2  HKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKH 61
+           K AEHH  AA+H EQAAK+H AAAEH   G+H++AAHH  TAY    HA+ HA QAA H
+Sbjct: 9  KKSAEHHQIAADHLEQAAKNHRAAAEHLAAGDHQKAAHHGYTAYGLSSHAQYHAQQAALH 68
+
+Query: 62 DAEHH 66
+           +  H
+Sbjct: 69 HSHEH 73
+
+
+>UniRef90_A0A5C1ACH7 Uncharacterized protein n=1 Tax=Gemmataceae bacterium PX52
+          TaxID=2598579 RepID=A0A5C1ACH7_9BACT
+          Length = 70
+
+ Score = 56.5 bits (134), Expect = 1e-05,   Method: Composition-based stats.
+ Identities = 31/57 (54%), Positives = 38/57 (66%)
+
+Query: 13 EHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKHDAEHHAPK 69
+          EHH++A +HH  AA+HHE G HE+AAHHA TA  H   AE+H  +AA   AE H  K
+Sbjct: 14 EHHKKAGEHHENAAKHHEAGNHEKAAHHAHTAKGHQSQAEKHGDEAAASHAEEHGTK 70
+
+
+>UniRef90_A0A2H5FQX6 Uncharacterized protein n=1 Tax=Legionella sainthelensi
+          TaxID=28087 RepID=A0A2H5FQX6_9GAMM
+          Length = 72
+
+ Score = 56.1 bits (133), Expect = 2e-05,   Method: Composition-based stats.
+ Identities = 31/64 (48%), Positives = 45/64 (70%)
+
+Query: 6  EHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKHDAEH 65
+          +HH  AAEHH +AA+HH  AA+HH+ G+HE+  HHA  A+ H +HA+ H+++AAKH   H
+Sbjct: 8  QHHSSAAEHHRKAAEHHGEAAKHHQGGDHEKGNHHAHLAHGHQEHAKHHSSEAAKHTTGH 67
+
+Query: 66 HAPK 69
+             +
+Sbjct: 68 ERKE 71
+
+
+>UniRef90_A0A4Q5LGK5 Uncharacterized protein n=3 Tax=Hymenobacter TaxID=89966
+          RepID=A0A4Q5LGK5_9BACT
+          Length = 88
+
+ Score = 54.5 bits (129), Expect = 4e-05,   Method: Composition-based stats.
+ Identities = 33/66 (50%), Positives = 43/66 (65%)
+
+Query: 2  HKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKH 61
+           K  E H KAA + E A ++H AAAEH +KG+HE+AAHH  TAY    HA++HA +AA H
+Sbjct: 9  QKIIEAHEKAAHYFEHALQNHRAAAEHLKKGDHEKAAHHGYTAYGFASHAQKHAEEAALH 68
+
+Query: 62 DAEHHA 67
+           +  H 
+Sbjct: 69 HSHEHG 74
+
+
+>UniRef90_A0A4Z0EGL9 Uncharacterized protein n=1 Tax=Hymenobacter sp. UV11
+          TaxID=1849735 RepID=A0A4Z0EGL9_9BACT
+          Length = 90
+
+ Score = 54.5 bits (129), Expect = 4e-05,   Method: Composition-based stats.
+ Identities = 33/68 (48%), Positives = 43/68 (63%)
+
+Query: 2  HKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKH 61
+           K  E H KAA + E A ++H AAAEH ++G HE+AAHH  TAY    HA++HA +AA H
+Sbjct: 12 QKIIEAHQKAAHYFEHAVQNHRAAAEHLKQGNHEKAAHHGYTAYGFAAHAKKHAEEAALH 71
+
+Query: 62 DAEHHAPK 69
+           +  H  K
+Sbjct: 72 HSHEHGDK 79
+
+
+>UniRef90_I0IMJ9 Uncharacterized protein n=1 Tax=Leptospirillum ferrooxidans
+          (strain C2-3) TaxID=1162668 RepID=I0IMJ9_LEPFC
+          Length = 80
+
+ Score = 53.4 bits (126), Expect = 9e-05,   Method: Composition-based stats.
+ Identities = 32/67 (47%), Positives = 44/67 (65%)
+
+Query: 3  KGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKHD 62
+          K  EHH +AA+HHE+AAKHH  A++ +E G+H+ AAHHA +A  H   AEEH  +A++  
+Sbjct: 13 KPQEHHKEAAQHHEEAAKHHKEASKMYEAGDHKTAAHHAHSATGHASSAEEHQNEASRKH 72
+
+Query: 63 AEHHAPK 69
+          A     K
+Sbjct: 73 ASLFGDK 79
+
+
+>UniRef90_UPI000369B78A hypothetical protein n=1 Tax=Hymenobacter aerophilus TaxID=119644
+          RepID=UPI000369B78A
+          Length = 88
+
+ Score = 53.0 bits (125), Expect = 1e-04,   Method: Composition-based stats.
+ Identities = 31/66 (46%), Positives = 41/66 (62%)
+
+Query: 2  HKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKH 61
+           K  E H KAA + E A ++H AA EH +KG+HE+AAHH  TAY    HA++HA +AA  
+Sbjct: 9  QKIIEAHQKAAHYFEHAVQNHRAAVEHLKKGDHEKAAHHGYTAYGFASHAQKHAEEAALQ 68
+
+Query: 62 DAEHHA 67
+           +  H 
+Sbjct: 69 HSHEHG 74
+
+
+>UniRef90_A0A370X2Q2 Uncharacterized protein n=1 Tax=Dyella sp. 4MSK11 TaxID=1927960
+          RepID=A0A370X2Q2_9GAMM
+          Length = 79
+
+ Score = 52.6 bits (124), Expect = 1e-04,   Method: Composition-based stats.
+ Identities = 33/56 (58%), Positives = 39/56 (69%)
+
+Query: 11 AAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKHDAEHH 66
+          AA+H E+AAKHH  AA+H EKG+HE A+HHA  A+ H  HA EHA  AAK  A  H
+Sbjct: 21 AAKHLEEAAKHHREAAKHAEKGDHETASHHAHLAHGHKLHAIEHAEHAAKQHASKH 76
+
+
+>UniRef90_UPI0010F9C116 hypothetical protein n=1 Tax=Rudaea sp. 3F27F6 TaxID=2502208
+          RepID=UPI0010F9C116
+          Length = 83
+
+ Score = 52.6 bits (124), Expect = 1e-04,   Method: Composition-based stats.
+ Identities = 30/67 (44%), Positives = 39/67 (58%)
+
+Query: 5  AEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKHDAE 64
+          AEHH KAAEHH QAAKHH  AA+H++ G+ ++  HHA  A  H   A     +A++  A 
+Sbjct: 17 AEHHAKAAEHHSQAAKHHQEAAKHYKNGDQQKGDHHAHMATGHGHQARHADEEASREYAS 76
+
+Query: 65 HHAPKPH 71
+           H    H
+Sbjct: 77 QHGNGKH 83
+
+
+>UniRef90_A0A317IC02 Uncharacterized protein n=1 Tax=Candidatus Melainabacteria
+          bacterium TaxID=2052166 RepID=A0A317IC02_9BACT
+          Length = 70
+
+ Score = 52.6 bits (124), Expect = 1e-04,   Method: Composition-based stats.
+ Identities = 37/69 (53%), Positives = 48/69 (69%)
+
+Query: 1  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 60
+          + K +EHH KAAEHH +AA HH  A++HH+ G HE+AAHHA TA  HH HAE HA +A K
+Sbjct: 2  SKKASEHHKKAAEHHRKAADHHEQASKHHDSGSHEKAAHHAQTATGHHLHAEHHAHEATK 61
+
+Query: 61 HDAEHHAPK 69
+            ++ +  K
+Sbjct: 62 CHSDEYGNK 70
+
+
+>UniRef90_A0A1N6RL65 Uncharacterized protein n=1 Tax=Mucilaginibacter lappiensis
+          TaxID=354630 RepID=A0A1N6RL65_9SPHI
+          Length = 68
+
+ Score = 52.6 bits (124), Expect = 2e-04,   Method: Composition-based stats.
+ Identities = 33/62 (53%), Positives = 41/62 (66%)
+
+Query: 7  HHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKHDAEHH 66
+          HH +AA+HH +AAKHH  A + H +G  E+AAHHA TA  H   A EHA +AAK  AE H
+Sbjct: 5  HHEEAAKHHTEAAKHHTEAHKSHAEGNDEKAAHHAQTAQGHQHKATEHATEAAKKHAEKH 64
+
+Query: 67 AP 68
+          + 
+Sbjct: 65 SS 66
+
+
+>UniRef90_UPI000943D660 hypothetical protein n=1 Tax=Rufibacter ruber TaxID=1783499
+          RepID=UPI000943D660
+          Length = 90
+
+ Score = 50.7 bits (119), Expect = 6e-04,   Method: Composition-based stats.
+ Identities = 35/65 (53%), Positives = 42/65 (64%)
+
+Query: 2  HKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKH 61
+           K AE+H KAAE+ EQAA +H AAAEH  KG+HE++AHH  TAY    H   HA  AA H
+Sbjct: 10 KKSAENHRKAAEYFEQAAANHRAAAEHLAKGDHEKSAHHGYTAYGLSSHGRHHAEDAALH 69
+
+Query: 62 DAEHH 66
+           +  H
+Sbjct: 70 HSHEH 74
+
+
+>UniRef90_A0A431QXA7 Uncharacterized protein n=2 Tax=Bradyrhizobiaceae TaxID=41294
+          RepID=A0A431QXA7_9BRAD
+          Length = 70
+
+ Score = 50.3 bits (118), Expect = 8e-04,   Method: Composition-based stats.
+ Identities = 38/69 (55%), Positives = 46/69 (66%)
+
+Query: 1  AHKGAEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAK 60
+          + K AEHH ++AEHH  AA+HH  AA+HHE G HE+AAHHA TA  H  HA  H+ +AAK
+Sbjct: 2  SKKAAEHHKQSAEHHTHAARHHGEAAKHHESGAHEKAAHHAHTARGHALHARHHSDEAAK 61
+
+Query: 61 HDAEHHAPK 69
+             E H  K
+Sbjct: 62 LHMEEHGKK 70
+
+
+>UniRef90_G3IVL7 Uncharacterized protein n=2 Tax=Methylobacter tundripaludum
+          TaxID=173365 RepID=G3IVL7_METTV
+          Length = 83
+
+ Score = 50.3 bits (118), Expect = 8e-04,   Method: Composition-based stats.
+ Identities = 30/62 (48%), Positives = 40/62 (64%)
+
+Query: 6  EHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKHDAEH 65
+          +HH KAAEHHEQAAKHH  AA+H+E G+ + AA HA  A+ +   A E   +A+K  A+ 
+Sbjct: 19 QHHQKAAEHHEQAAKHHKEAAKHYESGDDKTAAQHAHIAHGYSTQAMEQEMEASKKYAKM 78
+
+Query: 66 HA 67
+            
+Sbjct: 79 QG 80
+
+
+>UniRef90_A0A411HQF9 Uncharacterized protein n=1 Tax=Xanthomonadaceae bacterium
+          AQ6-296 TaxID=2511995 RepID=A0A411HQF9_9GAMM
+          Length = 92
+
+ Score = 49.9 bits (117), Expect = 0.001,   Method: Composition-based stats.
+ Identities = 29/67 (43%), Positives = 41/67 (61%)
+
+Query: 5  AEHHHKAAEHHEQAAKHHHAAAEHHEKGEHEQAAHHADTAYAHHKHAEEHAAQAAKHDAE 64
+          ++HH KAAEHH+ AA HH  AA+ +  G+  + AHHA  A  H   A++HA +A  H ++
+Sbjct: 26 SQHHEKAAEHHQHAADHHKEAAKQYGAGDDAKGAHHAHVASGHGLLAKQHAYEANMHFSK 85
+
+Query: 65 HHAPKPH 71
+           H  K H
+Sbjct: 86 KHGAKRH 92
+
+
+  Database: uniref90
+    Posted date:  Feb 18, 2020  1:18 PM
+  Number of letters in database: 999,999,478
+  Number of sequences in database:  3,263,190
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.01
+    Posted date:  Feb 18, 2020  1:20 PM
+  Number of letters in database: 999,999,800
+  Number of sequences in database:  2,300,724
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.02
+    Posted date:  Feb 18, 2020  1:22 PM
+  Number of letters in database: 999,999,509
+  Number of sequences in database:  2,314,965
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.03
+    Posted date:  Feb 18, 2020  1:24 PM
+  Number of letters in database: 999,999,624
+  Number of sequences in database:  2,445,039
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.04
+    Posted date:  Feb 18, 2020  1:26 PM
+  Number of letters in database: 999,999,860
+  Number of sequences in database:  2,627,185
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.05
+    Posted date:  Feb 18, 2020  1:28 PM
+  Number of letters in database: 999,999,933
+  Number of sequences in database:  2,624,144
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.06
+    Posted date:  Feb 18, 2020  1:30 PM
+  Number of letters in database: 999,999,631
+  Number of sequences in database:  2,550,143
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.07
+    Posted date:  Feb 18, 2020  1:33 PM
+  Number of letters in database: 999,999,405
+  Number of sequences in database:  3,077,050
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.08
+    Posted date:  Feb 18, 2020  1:35 PM
+  Number of letters in database: 999,999,748
+  Number of sequences in database:  3,028,773
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.09
+    Posted date:  Feb 18, 2020  1:37 PM
+  Number of letters in database: 999,999,849
+  Number of sequences in database:  3,504,236
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.10
+    Posted date:  Feb 18, 2020  1:40 PM
+  Number of letters in database: 999,999,750
+  Number of sequences in database:  3,337,735
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.11
+    Posted date:  Feb 18, 2020  1:42 PM
+  Number of letters in database: 999,999,658
+  Number of sequences in database:  3,277,655
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.12
+    Posted date:  Feb 18, 2020  1:44 PM
+  Number of letters in database: 999,999,993
+  Number of sequences in database:  3,245,838
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.13
+    Posted date:  Feb 18, 2020  1:47 PM
+  Number of letters in database: 999,999,626
+  Number of sequences in database:  3,237,856
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.14
+    Posted date:  Feb 18, 2020  1:49 PM
+  Number of letters in database: 999,999,798
+  Number of sequences in database:  3,254,970
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.15
+    Posted date:  Feb 18, 2020  1:51 PM
+  Number of letters in database: 999,999,771
+  Number of sequences in database:  3,223,497
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.16
+    Posted date:  Feb 18, 2020  1:54 PM
+  Number of letters in database: 999,999,848
+  Number of sequences in database:  3,190,506
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.17
+    Posted date:  Feb 18, 2020  1:56 PM
+  Number of letters in database: 999,999,844
+  Number of sequences in database:  3,208,841
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.18
+    Posted date:  Feb 18, 2020  1:58 PM
+  Number of letters in database: 999,999,846
+  Number of sequences in database:  3,224,530
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.19
+    Posted date:  Feb 18, 2020  2:01 PM
+  Number of letters in database: 999,999,970
+  Number of sequences in database:  3,247,762
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.20
+    Posted date:  Feb 18, 2020  2:03 PM
+  Number of letters in database: 999,999,980
+  Number of sequences in database:  3,264,323
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.21
+    Posted date:  Feb 18, 2020  2:05 PM
+  Number of letters in database: 999,999,952
+  Number of sequences in database:  3,239,807
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.22
+    Posted date:  Feb 18, 2020  2:07 PM
+  Number of letters in database: 999,999,797
+  Number of sequences in database:  3,207,086
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.23
+    Posted date:  Feb 18, 2020  2:10 PM
+  Number of letters in database: 999,999,689
+  Number of sequences in database:  3,181,105
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.24
+    Posted date:  Feb 18, 2020  2:12 PM
+  Number of letters in database: 999,999,172
+  Number of sequences in database:  3,192,704
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.25
+    Posted date:  Feb 18, 2020  2:14 PM
+  Number of letters in database: 999,999,752
+  Number of sequences in database:  3,190,505
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.26
+    Posted date:  Feb 18, 2020  2:16 PM
+  Number of letters in database: 999,999,960
+  Number of sequences in database:  3,213,936
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.27
+    Posted date:  Feb 18, 2020  2:19 PM
+  Number of letters in database: 999,999,749
+  Number of sequences in database:  3,258,688
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.28
+    Posted date:  Feb 18, 2020  2:21 PM
+  Number of letters in database: 999,999,692
+  Number of sequences in database:  2,476,652
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.29
+    Posted date:  Feb 18, 2020  2:23 PM
+  Number of letters in database: 999,998,551
+  Number of sequences in database:  2,913,993
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.30
+    Posted date:  Feb 18, 2020  2:25 PM
+  Number of letters in database: 999,999,544
+  Number of sequences in database:  2,701,876
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.31
+    Posted date:  Feb 18, 2020  2:27 PM
+  Number of letters in database: 999,999,997
+  Number of sequences in database:  2,726,250
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.32
+    Posted date:  Feb 18, 2020  2:29 PM
+  Number of letters in database: 999,999,942
+  Number of sequences in database:  2,721,068
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.33
+    Posted date:  Feb 18, 2020  2:31 PM
+  Number of letters in database: 999,999,886
+  Number of sequences in database:  2,770,923
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.34
+    Posted date:  Feb 18, 2020  2:33 PM
+  Number of letters in database: 999,999,786
+  Number of sequences in database:  2,743,165
+  
+  Database: /bml/bml_casp15/databases/uniref90_01_2020/uniref90.35
+    Posted date:  Feb 18, 2020  2:34 PM
+  Number of letters in database: 318,885,110
+  Number of sequences in database:  972,567
+  
+Lambda     K      H
+   0.294    0.113    0.320 
+
+Lambda     K      H
+   0.267   0.0365    0.140 
+
+
+Matrix: BLOSUM62
+Gap Penalties: Existence: 11, Extension: 1
+Number of Hits to DB: 13,960,676,000
+Number of Sequences: 105959287
+Number of extensions: 447452077
+Number of successful extensions: 6149431
+Number of sequences better than 1.0e-03: 500
+Number of HSP's better than  0.0 without gapping: 1619
+Number of HSP's successfully gapped in prelim test: 2392
+Number of HSP's that attempted gapping in prelim test: 5709040
+Number of HSP's gapped (non-prelim): 239873
+length of query: 71
+length of database: 35,318,875,500
+effective HSP length: 42
+effective length of query: 29
+effective length of database: 35,163,552,742
+effective search space: 1019743029518
+effective search space used: 1019743029518
+T: 11
+A: 40
+X1: 16 ( 6.8 bits)
+X2: 38 (14.6 bits)
+X3: 64 (24.7 bits)
+S1: 42 (21.0 bits)
+S2: 118 (50.2 bits)
