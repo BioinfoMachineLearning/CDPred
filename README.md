@@ -15,7 +15,7 @@ CDPred is a deep transformer tool for predicting interchain residue-residue dist
 
 ## System Requirements
 ### OS Requirements
-This package is supported for Linux. The package has been tested on the following systems:  
+This package is developed on Linux. The package has been tested on the following two Linux systems:  
 Linux: Ubuntu 16.04  
 Linux: CentOS Linux release 7.9.2009  
 ### Python Dependencies
