@@ -123,6 +123,35 @@ The contents of each output file are as follows:
 *   `name.htxt` – Prediction inter-chain contact map.
 *   `name.dist` – Prediction inter-chain distance map.
 
+## Evaluation
+Script File: `.lib/distmap_evaluate.py -p [pred_map] -t [true_map] -f1 [fasta_file1] -f2 [fasta_file2]`
+Parameters:
+	`-p` – The prediction contact map with '.htxt' suffix.
+	`-t` – The nativate distance/contact map with '.htxt' suffix.
+	`-f1` – The fasta sequence file of chain 1 of dimer.
+	`-f2` – The fasta sequence file of chain 2 of dimer.
+
+Demo1: Evaluate the homodimer target.
+
+```
+python ./lib/distmap_evaluate.py -p ./example/expection_output/T1084A_T1084B/predmap/T1084A_T1084B.htxt -t ./example/ground_truth/T1084A_T1084B.htxt -f1 ./example/ground_truth/T1084A.fasta -f2 ./example/ground_truth/T1084B.fasta
+```
+Expection output of Demo1:
+```
+NAME            LEN_A LEN_B TOP5       TOP10      TOPL/10    TOPL/5     TOPL/2     TOPL      
+T1084A_T1084B   71    71    100.0000   100.0000   100.0000   100.0000   94.2857    91.5493 
+```
+
+Demo2: Evaluate the heterodimer target.
+```
+python ./lib/distmap_evaluate.py -p ./example/expection_output/H1017A_H1017B/predmap/H1017A_H1017B.htxt -t ./example/ground_truth/H1017A_H1017B.htxt -f1 ./example/ground_truth/H1017A.fasta -f2 ./example/ground_truth/H1017B.fasta
+```
+Expection output of Demo2:
+```
+NAME            LEN_A LEN_B TOP5       TOP10      TOPL/10    TOPL/5     TOPL/2     TOPL      
+H1017A_H1017B   110   125   60.0000    60.0000    54.5455    50.0000    41.8182    36.3636 
+```
+
 ## License
 
 This project is covered under the **MIT License**.
