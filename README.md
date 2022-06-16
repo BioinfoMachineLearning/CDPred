@@ -63,13 +63,13 @@ And the the Uniref90 database download will take about 40 minutes to 70 minutes,
 ### Parameter Description of the CDPred prediction script.
 
 **Command**:  
-	`python CDPred_Installation_Path/lib/Model_predict.py -n [name] -p [pdb_file_list] -a [a3m_file] -m [model_option] -o [out_path]`  
+>`python CDPred_Installation_Path/lib/Model_predict.py -n [name] -p [pdb_file_list] -a [a3m_file] -m [model_option] -o [out_path]`  
 **Parameters**:  
-	`-n` – The name of the protein complex, can be protein ID or custom name.  
-	`-p` – The predicted monomer tertiary structure file or files with ".pdb" suffix. For homodimer inter-chain distance prediction, one predicted monomer structure file is enough. For heterodimer inter-chain distance prediction, both chains' predicted monomer structure files are required and needed to seperate by one space (Check the detail in [Demo](#demo) section).  
-	`-a` – Multiple sequence alignment (MSA) file in ".a3m" format. You can use your own or any third-party tool to generate MSA file, or you can follow the instruction in [ZComplexMSA](https://github.com/BioinfoMachineLearning/CDPred/tree/main/external_tool/ZComplexMSA) to install our custom MSA generation tool (Require large disk space and long time for dataset downloading).  
-	`-m` – Model option for different type prediction. Use "homodimer" for homodimer inter-chain distance prediction. Use "heterodimer" for heterodimer inter-chain distance prediction.  
-	`-o` – The custom output folder. It will be automaticly created if not exist.  
+>`-n` – The name of the protein complex, can be protein ID or custom name.  
+>`-p` – The predicted monomer tertiary structure file or files with ".pdb" suffix. For homodimer inter-chain distance prediction, one predicted monomer structure file is enough. For heterodimer inter-chain distance prediction, both chains' predicted monomer structure files are required and needed to seperate by one space (Check the detail in [Demo](#demo) section).  
+>`-a` – Multiple sequence alignment (MSA) file in ".a3m" format. You can use your own or any third-party tool to generate MSA file, or you can follow the instruction in [ZComplexMSA](https://github.com/BioinfoMachineLearning/CDPred/tree/main/external_tool/ZComplexMSA) to install our custom MSA generation tool (Require large disk space and long time for dataset downloading).  
+>`-m` – Model option for different type prediction. Use "homodimer" for homodimer inter-chain distance prediction. Use "heterodimer" for heterodimer inter-chain distance prediction.  
+>`-o` – The custom output folder. It will be automaticly created if not exist.  
 
 ## Demo
 ### Examples to make predictions on prepared input data
@@ -130,12 +130,12 @@ The contents of each output file are as follows:
 
 ## Evaluation on a Small Dataset
 **Command**:  
-	`python CDPred_Installation_Path/lib/distmap_evaluate.py -p [pred_map] -t [true_map] -f1 [fasta_file1] -f2 [fasta_file2]`
+>`python CDPred_Installation_Path/lib/distmap_evaluate.py -p [pred_map] -t [true_map] -f1 [fasta_file1] -f2 [fasta_file2]`  
 **Parameters**:  
-	`-p` – The prediction contact map with '.htxt' suffix.   
-	`-t` – The nativate distance/contact map with '.htxt' suffix.  
-	`-f1` – The fasta sequence file of chain 1 of dimer.  
-	`-f2` – The fasta sequence file of chain 2 of dimer.  
+>`-p` – The prediction contact map with '.htxt' suffix.   
+>`-t` – The nativate distance/contact map with '.htxt' suffix.  
+>`-f1` – The fasta sequence file of chain 1 of dimer.  
+>`-f2` – The fasta sequence file of chain 2 of dimer.  
 
 Demo1: Evaluate the homodimer target.
 
