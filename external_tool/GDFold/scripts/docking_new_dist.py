@@ -42,9 +42,12 @@ if not os.path.exists(OUT):
 os.chdir(OUT)
 init()
 
-
-chain1 = target_name.split('_')[0][-1]
-chain2 = target_name.split('_')[1][-1]
+if '_' not in target_name:
+    chain1 = 'A'
+    chain2 = 'B'
+else:
+    chain1 = target_name.split('_')[0][-1]
+    chain2 = target_name.split('_')[1][-1]
     
 target_id = target_name.split('_')[0][:-1]
     
