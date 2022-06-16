@@ -1,6 +1,6 @@
 # CDPred
-##Function of CDPred
-CDPred is a deep transformer tool for predicting interchain residue-residue distances of protein dimers. For a homodimer, it takes the tertiary structure of a unit of the homodimer and the multiple sequence alignment (MSA) of the unit as input to predict the residue-residue distances between the two identical units of the homodimer. For a heterodimer, it takes the tertiary structures of the two units of the heterodimer and the multiple seuqence alignments of the two units as input to predict residue-residue distances between the two units. 
+## Function of CDPred
+CDPred is a deep transformer tool for predicting interchain residue-residue distances of protein dimers. For a homodimer consiting of two identical units, it takes the tertiary structure of a unit of the homodimer and the multiple sequence alignment (MSA) of the unit as input to predict the residue-residue distances between the two identical units of the homodimer. For a heterodimer consisting of two different units, it takes the tertiary structures of the two units of the heterodimer and the MSA of the two units as input to predict residue-residue distances between the two units. If no MSA is available for dimer, users can use a script in this package to generate a MSA as input. The input is converted into numerical features that are used by 2D attention-based transformer networks to predict residue-residue distances between two units in a dimer. 
 
 ## Installation
 **(1) Download CDPred package (a short path for the package is recommended)**
