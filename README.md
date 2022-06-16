@@ -4,6 +4,16 @@
 ## Function of CDPred
 CDPred is a deep transformer tool for predicting interchain residue-residue distances of protein dimers. For a homodimer consiting of two identical units, it takes the tertiary structure of a unit of the homodimer and the multiple sequence alignment (MSA) of the unit as input to predict the residue-residue distances between the two identical units of the homodimer. For a heterodimer consisting of two different units, it takes the tertiary structures of the two units of the heterodimer and the MSA of the two units as input to predict residue-residue distances between the two units. If no MSA is available for dimer, users can use a script in this package to generate a MSA as input. The input is converted into numerical features that are used by 2D attention-based transformer networks to predict residue-residue distances between two units in a dimer. 
 
+# 
+- [System Requirements](#system-requirements)
+- [Installation guide](#installation-guide)
+- [Running CDPred](#running-cdpred)
+- [Demo](#demo)
+- [Output files](#output-files)
+- [Evaluation](#evaluation)
+- [License](#license)
+# 
+
 ## System Requirements
 ### OS Requirements
 This package is supported for Linux. The package has been tested on the following systems:  
@@ -58,7 +68,7 @@ Parameters:
 	`-n` – The name of the protein complex, can be protein ID or custom name.
 	`-p` – The prediction monomer structure file or files with ".pdb" suffix. For homodimer inter-chain distance prediction one 
 		prediction monomer structure file is enough. For heterodimer inter-chain distance prediction, both chain's prediction 
-		monomer structure files are required and need to seperate by one space (Check the detail in [Demo](##Demo) section).
+		monomer structure files are required and need to seperate by one space (Check the detail in [Demo](#demo) section).
 	`-a` – Multiple sequence file in ".a3m" format. You can use any third-party tools to generate MSA file, or you can follow the 
 		instruction in [ZComplexMSA](https://github.com/BioinfoMachineLearning/CDPred/tree/main/external_tool/ZComplexMSA) to 
 		install our custom MSA generation tool (Require large disk space and long time for dataset downloading).
@@ -153,5 +163,4 @@ H1017A_H1017B   110   125   60.0000    60.0000    54.5455    50.0000    41.8182 
 ```
 
 ## License
-
 This project is covered under the **MIT License**.
