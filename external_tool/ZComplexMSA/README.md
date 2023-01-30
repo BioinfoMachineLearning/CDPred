@@ -15,12 +15,13 @@ For homodimer:
 Download the Big Fantastic Database(BFD)([here](https://bfd.mmseqs.com/))
 
 For heterodimer:
-***Download unire90
+
+***Download unire90***
 ```
 wget https://ftp.uniprot.org/pub/databases/uniprot/uniref/uniref90/uniref90.fasta.gz
 tar -zxvf uniref90.tar.gz
 ```
-***Unpackage uniprot2pdb
+***Unpackage uniprot2pdb***
 ```
 tar -zxvf uniprot2pdb.tar.gz
 ```
