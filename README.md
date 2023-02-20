@@ -52,8 +52,9 @@ pip install -r requirments.txt
 **(3) Download Uniref90**
 Download the Uniref90_01_2020 database for PSSM generation
 ```
-donwload from znodo https://zenodo.org/record/7591311#.Y9n9ZlvMJQM
-tar -jxvf uniref90_01_2020.tar.bz2
+donwload from znodo https://zenodo.org/record/7650566#.Y_Mbk1vMJQM
+xz -d -T 4 uniref90_01_2020.tar.xz
+tar -xvf uniref90_01_2020.tar
 ```
 Modify the Uniref90 path in script ./lib/constants.py as /Download_Path/uniref90_01_2020/uniref90
 The installation and configuration of the virtual environment lasts about 10 minutes (minor difference on different devices).  
