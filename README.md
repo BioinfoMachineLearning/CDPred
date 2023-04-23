@@ -165,4 +165,4 @@ H1017A_H1017B   110   125   60.0000    60.0000    54.5455    50.0000    41.8182 
 This project is covered under the **MIT License**.
 
 ## Reference
-[Guo, Z., Liu, J., Skolnick, J., & Cheng, J. (2022). Prediction of inter-chain distance maps of protein complexes with 2D attention-based deep neural networks. bioRxiv.](https://www.biorxiv.org/content/10.1101/2022.06.19.496734v1)
+[Guo, Z., Liu, J., Skolnick, J., & Cheng, J. (2022). Guo, Z., Liu, J., Skolnick, J., & Cheng, J. (2022). Prediction of inter-chain distance maps of protein complexes with 2D attention-based deep neural networks. Nature Communications, 13(1), 6963]
