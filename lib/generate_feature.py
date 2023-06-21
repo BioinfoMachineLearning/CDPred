@@ -101,7 +101,7 @@ def computepssm(name, fasta, outdir, unirefdb):
     cmd = f'perl {PSSM} {fasta} {outdir} {unirefdb}'
     p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
     output,error = p.communicate()
-    if not os.path.exists(tempdir + name + '_pssm.txt'):
+    if not os.path.exists(f'{outdir}/{name}_pssm.txt'): 
         print('feature generate error %s'%name)
         print(cmd)
         print(output)
