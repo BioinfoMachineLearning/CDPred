@@ -50,15 +50,16 @@ pip install --upgrade pip
 pip install -r requirments.txt
 ```
 **(3) Download Uniref90**
-Download the Uniref90_01_2020 database for PSSM generation
+Download the Uniref90_01_2020 database from [znodo](https://zenodo.org/record/7650566#.Y_Mbk1vMJQM) for PSSM generation
 ```
-donwload from znodo https://zenodo.org/record/7650566#.Y_Mbk1vMJQM
+aria2c -x 10 https://zenodo.org/record/7650566/files/uniref90_01_2020.tar.xz?download=1
 xz -d -T 4 uniref90_01_2020.tar.xz
 tar -xvf uniref90_01_2020.tar
 ```
 Modify the Uniref90 path in script ./lib/constants.py as /Download_Path/uniref90_01_2020/uniref90
 The installation and configuration of the virtual environment lasts about 10 minutes (minor difference on different devices).  
 And the the Uniref90 database download will take about 40 minutes to 70 minutes, dependent on your network speed.
+**If you encounter any errors related to the shared library while generating features, please add the corresponding libraries to your system path.**
 
 ## Running CDPred
 ### Parameter Description of the CDPred prediction script.

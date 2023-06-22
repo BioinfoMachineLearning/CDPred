@@ -101,7 +101,7 @@ def computepssm(name, fasta, outdir, unirefdb):
     cmd = f'perl {PSSM} {fasta} {outdir} {unirefdb}'
     p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
     output,error = p.communicate()
-    if not os.path.exists(tempdir + name + '_pssm.txt'):
+    if not os.path.exists(f'{outdir}/{name}_pssm.txt'):
         print('feature generate error %s'%name)
         print(cmd)
         print(output)
@@ -355,7 +355,7 @@ if __name__ == "__main__":
     name = args.name
     a3m_file = args.a3m_file
     depth = args.depth
-    outdir = args.outdir
+    outdir = os.path.abspath(args.outdir)
     # unirefdb = args.unirefdb
     if not os.path.exists(outdir):
         os.mkdir(outdir)
@@ -368,8 +368,8 @@ if __name__ == "__main__":
     fasta = open(aln_file, 'r').readlines()[1].strip('\n')
     open(fasta_file, 'w').write(f'>{name}\n{fasta}\n')
     time_start = time.time()
-    pre_load_esm(if_train=False)
-    computeplm(name, aln_file, save_ccmpred_path=outdir)
-    computerowatt_over1024(name, a3m_file, outdir=outdir, depth=depth)
+    # pre_load_esm(if_train=False)
+    # computeplm(name, aln_file, save_ccmpred_path=outdir)
+    # computerowatt_over1024(name, a3m_file, outdir=outdir, depth=depth)
     computepssm(name, fasta_file, outdir, unirefdb)
     print('{}s'.format(time.time() - time_start))
