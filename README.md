@@ -50,7 +50,9 @@ pip install --upgrade pip
 pip install -r requirments.txt
 ```
 **(3) Download Uniref90**
+
 Download the Uniref90_01_2020 database from [znodo](https://zenodo.org/record/7650566#.Y_Mbk1vMJQM) for PSSM generation
+
 ```
 aria2c -x 10 https://zenodo.org/record/7650566/files/uniref90_01_2020.tar.xz?download=1
 xz -d -T 4 uniref90_01_2020.tar.xz
